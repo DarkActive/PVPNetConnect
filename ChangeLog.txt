@@ -1,0 +1,14 @@
+﻿
+---Version 1.0---
+Initail port from java.
+Condensed RTMPSCLient.java + LoLRTMPSClient.java to PVPNetConnection.cs
+Increased functionality for GUI based clients by implementing events.
+Made both the Encoder and Decoder static classes.
+Created better callback methods that return with a parsed class.
+Added checks for connectivity when calling invoke functions.
+Added reliable disconnect method.
+
+
+---TODO---
+Make sure the subscription services work properly.
+Include other rtmps function calls.
