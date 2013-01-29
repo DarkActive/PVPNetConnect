@@ -1,0 +1,22 @@
+In order to use the methods found in this project, you need to adhere to a specific format of calling said methods.
+
+For generic objects that do not have static returns one must do this:
+
+PvpNetConnection.GetAvailableQueues(new UnclassedObject.Callback((TypedObject result) =>
+{
+	object member = (object)result["keynamehere];
+}));
+
+From this you can access any members of the TypedObject just as you would with a dictionary. I will add as many static returns as I can in order to avoid this as much as possible.
+
+
+For objects that do have a static class associated with them you must do this:
+
+PvpNetConnection.GetAllSummonerDataByAccount(147682, new AllSummonerData.Callback((AllSummonerData result) =>
+{
+	string summonerName = result.Summmoner.Name;
+}));
+
+By having a static return class we can more easily access the available information.
+
+All of these methods are run Asynchronously.
