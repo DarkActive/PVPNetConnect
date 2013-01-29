@@ -51,6 +51,7 @@
     <Compile Include="Callbacks\RiotGamesObject.cs" />
     <Compile Include="Callbacks\Summoner.cs" />
     <Compile Include="Callbacks\SummonerLevel.cs" />
+    <Compile Include="Callbacks\UnclassedObject.cs" />
     <Compile Include="ClassDefinition.cs" />
     <Compile Include="Error.cs" />
     <Compile Include="Packet.cs" />
