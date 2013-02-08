@@ -1,0 +1,5 @@
+D:\Development\PVPNetConnect\bin\Debug\PVPNetConnect.pdb
+D:\Development\PVPNetConnect\obj\Debug\ResolveAssemblyReference.cache
+D:\Development\PVPNetConnect\obj\Debug\PVPNetConnect.pdb
+D:\Development\PVPNetConnect\bin\Debug\PVPNetConnect.dll
+D:\Development\PVPNetConnect\obj\Debug\PVPNetConnect.dll

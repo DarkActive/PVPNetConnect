@@ -1,5 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <StartupObject>
+    </StartupObject>
+  </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -22,6 +26,7 @@
     <WarningLevel>4</WarningLevel>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <PlatformTarget>x86</PlatformTarget>
+    <DocumentationFile>bin\Debug\PVPNetConnect.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -55,9 +60,32 @@
     <Compile Include="ClassDefinition.cs" />
     <Compile Include="Error.cs" />
     <Compile Include="Packet.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Region.cs" />
     <Compile Include="PVPNetConnection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RiotObjects\Catalog\Effect.cs" />
+    <Compile Include="RiotObjects\Catalog\ItemEffect.cs" />
+    <Compile Include="RiotObjects\Catalog\Rune.cs" />
+    <Compile Include="RiotObjects\Catalog\RuneType.cs" />
+    <Compile Include="RiotObjects\Catalog\RuneSlot.cs" />
+    <Compile Include="RiotObjects\Client\LoginDataPacket.cs" />
+    <Compile Include="RiotObjects\Summoner\PublicSummoner.cs" />
+    <Compile Include="RiotObjects\Summoner\RiotGamesObject.cs" />
+    <Compile Include="RiotObjects\Statistics\PlayerStatSummaries.cs" />
+    <Compile Include="RiotObjects\Summoner\AllSummonerData.cs" />
+    <Compile Include="RiotObjects\Summoner\Masterybook\MasteryBook.cs" />
+    <Compile Include="RiotObjects\Summoner\SummonerGameModeSpells.cs" />
+    <Compile Include="RiotObjects\Summoner\Spellbook\SlotEntry.cs" />
+    <Compile Include="RiotObjects\Summoner\Spellbook\SpellBookPage.cs" />
+    <Compile Include="RiotObjects\Summoner\Spellbook\SpellBook.cs" />
+    <Compile Include="RiotObjects\Summoner\SummonerDefaultSpells.cs" />
+    <Compile Include="RiotObjects\Summoner\SummonerLevelAndPoints.cs" />
+    <Compile Include="RiotObjects\Summoner\AllPublicSummonerData.cs" />
+    <Compile Include="RiotObjects\Summoner\SummonerLevel.cs" />
+    <Compile Include="RiotObjects\Summoner\Summoner.cs" />
+    <Compile Include="RiotObjects\Summoner\SummonerTalentsAndPoints.cs" />
+    <Compile Include="RiotObjects\UnclassedObject.cs" />
     <Compile Include="RTMPSDecoder.cs" />
     <Compile Include="RTMPSEncoder.cs" />
     <Compile Include="TypedObject.cs" />

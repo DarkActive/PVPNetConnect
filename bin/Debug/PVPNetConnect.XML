@@ -1,0 +1,286 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>PVPNetConnect</name>
+    </assembly>
+    <members>
+        <member name="P:PVPNetConnect.RiotObjects.Summoner.SummonerGameModeSpells.Spell1Id">
+            <summary>
+            Summoner spell ID in D slot.
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Summoner.SummonerGameModeSpells.Spell2Id">
+            <summary>
+            Summoner spell ID in F slot.
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Summoner.SummonerDefaultSpells.SummonerDefaultSpellMap">
+            <summary>
+            Dictionary object for default spells based on game mode (Game modes: CLASSIC, ARAM, ODIN, TUTORIAL).
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Summoner.SummonerDefaultSpells.summonerId">
+            <summary>
+            Summoner ID number.
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Catalog.RuneType.RuneTypeId">
+            <summary>
+            ID number of rune type.
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Catalog.RuneType.Name">
+            <summary>
+            Name of rune type.
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Summoner.SummonerTalentsAndPoints.TalentPoints">
+            <summary>
+            Number of total talent points.
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Summoner.SummonerTalentsAndPoints.ModifyDate">
+            <summary>
+            Date/time since modified.
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Summoner.SummonerTalentsAndPoints.CreateDate">
+            <summary>
+            Date/time when created.
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Summoner.SummonerTalentsAndPoints.SummonerId">
+            <summary>
+            Date/time since modified.
+            </summary>
+        </member>
+        <member name="T:PVPNetConnect.RiotObjects.Summoner.Summoner">
+            <summary>
+            Class with some basic public summoner information.
+            </summary>
+        </member>
+        <member name="F:PVPNetConnect.RiotObjects.Summoner.Summoner.Name">
+            <summary>
+            The summoner name or in game name (same as InternalName).
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Summoner.Summoner.SeasonTwoTier">
+            <summary>
+            Highest ranked tier for season two.
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Summoner.Summoner.InternalName">
+            <summary>
+            The summoner name or in game name.
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Summoner.Summoner.AccountId">
+            <summary>
+            Account ID number.
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Summoner.Summoner.SeasonOneTier">
+            <summary>
+            Highest ranked tier for season one.
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Summoner.Summoner.SummonerId">
+            <summary>
+            Summoner ID number.
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Summoner.Summoner.ProfileIconId">
+            <summary>
+            Profile icon ID number.
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Summoner.SummonerLevelAndPoints.InfPoints">
+            <summary>
+            Total influence points (IP) earned in lifetime.
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Summoner.SummonerLevelAndPoints.ExpPoints">
+            <summary>
+            Amount of experience points (default = 10 if summoner level is 30).
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Summoner.SummonerLevelAndPoints.SummonerLevel">
+            <summary>
+            Current level of summoner.
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Summoner.SummonerLevelAndPoints.SummonerId">
+            <summary>
+            Summoner ID number.
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Catalog.ItemEffect.EffectId">
+            <summary>
+            ID number of effect.
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Catalog.ItemEffect.ItemEffectId">
+            <summary>
+            ID number of item effect.
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Catalog.ItemEffect.Effect">
+            <summary>
+            Class with effect information.
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Catalog.ItemEffect.Value">
+            <summary>
+            Value of the item effect.
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Catalog.ItemEffect.ItemId">
+            <summary>
+            ID number of the item.
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Catalog.Effect.EffectId">
+            <summary>
+            ID number of effect.
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Catalog.Effect.GameCode">
+            <summary>
+            The LOL game code of the effect.
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Catalog.Effect.Name">
+            <summary>
+            The name of the effect.
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Catalog.Effect.CategoryId">
+            <summary>
+            Value of the item effect (set to null?).
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Catalog.Effect.RuneType">
+            <summary>
+            The type of the rune.
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Catalog.Rune.ImagePath">
+            <summary>
+            String to image path (usually set to null).
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Catalog.Rune.ToolTip">
+            <summary>
+            Tool tip for rune (usually set to null).
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Catalog.Rune.Tier">
+            <summary>
+            Tier of rune (1, 2, or 3).
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Catalog.Rune.ItemId">
+            <summary>
+            Item ID of the rune.
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Catalog.Rune.RuneType">
+            <summary>
+            Class that specifies the rune type.
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Catalog.Rune.Duration">
+            <summary>
+            Duration of rune (probably only affected for temporary runes).
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Catalog.Rune.GameCode">
+            <summary>
+            Game code of the rune (game client code).
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Catalog.Rune.BaseType">
+            <summary>
+            Type of this object (set to "RUNE" in this class.
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Catalog.Rune.Description">
+            <summary>
+            Description of the rune.
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Catalog.Rune.Name">
+            <summary>
+            Name of the rune.
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Catalog.Rune.Uses">
+            <summary>
+            Unknown significance (set to null).
+            </summary>
+        </member>
+        <member name="F:PVPNetConnect.PVPNetConnection.useGarena">
+            Garena information 
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Catalog.RuneSlot.Id">
+            <summary>
+            ID number of rune slot.
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Catalog.RuneSlot.MinLevel">
+            <summary>
+            Minimum level required for rune slot.
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Catalog.RuneSlot.RuneType">
+            <summary>
+            Class that describes this slot's rune type.
+            </summary>
+        </member>
+        <member name="T:PVPNetConnect.RiotObjects.Summoner.PublicSummoner">
+            <summary>
+            Class with public summoner information.
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Summoner.PublicSummoner.InternalName">
+            <summary>
+            The name of the summoner.
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Summoner.PublicSummoner.Name">
+            <summary>
+            The name of the summoner.
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Summoner.PublicSummoner.AccountId">
+            <summary>
+            The account ID number.
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Summoner.PublicSummoner.ProfileIconId">
+            <summary>
+            The ID number of summoner's profile icon.
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Summoner.PublicSummoner.RevisionDate">
+            <summary>
+            Date/time this information was revised.
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Summoner.PublicSummoner.RevisionId">
+            <summary>
+            NOT IMPLEMENTED.
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Summoner.PublicSummoner.SummonerLevel">
+            <summary>
+            The current level of the summoner.
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Summoner.PublicSummoner.SummonerId">
+            <summary>
+            The summoner ID number.
+            </summary>
+        </member>
+    </members>
+</doc>

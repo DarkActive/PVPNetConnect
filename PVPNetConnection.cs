@@ -20,7 +20,11 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading;
 using System.Web.Script.Serialization;
-using PVPNetConnect.Callbacks;
+
+
+using PVPNetConnect.RiotObjects;
+using PVPNetConnect.RiotObjects.Summoner;
+using PVPNetConnect.RiotObjects.Client;
 
 namespace PVPNetConnect
 {
@@ -773,6 +777,7 @@ namespace PVPNetConnect
 
         private void Error(string message, ErrorType type)
         {
+            Console.WriteLine(message);
             Error error = new Error()
             {
                 Type = type,
@@ -1079,63 +1084,21 @@ namespace PVPNetConnect
             InvokeWithCallback("clientFacadeService", "getLoginDataPacketForUser", new object[] { }, cb);
         }
 
-        public void GetSumonerActiveBoosts(UnclassedObject.Callback callback)
+        public void GetAllPublicSummonerDataByAccount(int accountID, AllPublicSummonerData.Callback callback)
         {
-            UnclassedObject cb = new UnclassedObject(callback);
-            InvokeWithCallback("inventoryService", "getSumonerActiveBoosts", new object[] { }, cb);
+            AllPublicSummonerData cb = new AllPublicSummonerData(callback);
+            InvokeWithCallback("summonerService", "getAllPublicSummonerDataByAccount", new object[] { accountID }, cb);
         }
 
-        public void GetAvailableChampions(UnclassedObject.Callback callback)
-        {
-            UnclassedObject cb = new UnclassedObject(callback);
-            InvokeWithCallback("inventoryService", "getAvailableChampions", new object[] { }, cb);
-        }
-
-        public void GetAvailableQueues(UnclassedObject.Callback callback)
-        {
-            UnclassedObject cb = new UnclassedObject(callback);
-            InvokeWithCallback("matchmakerService", "getAvailableQueues", new object[] { }, cb);
-        }
-
-        public void RetreivePlayerStatsByAccountId(int summonerID, string season, UnclassedObject.Callback callback)
-        {
-            UnclassedObject cb = new UnclassedObject(callback);
-            InvokeWithCallback("playerStatsService", "retreivePlayerStatsByAccountId", new object[] { summonerID, season }, cb);
-        }
-
-        public void RetrieveTopPlayedChampions(int summonerID, string queueType, UnclassedObject.Callback callback)
-        {
-            UnclassedObject cb = new UnclassedObject(callback);
-            InvokeWithCallback("playerStatsService", "retrieveTopPlayedChampions", new object[] { summonerID, queueType }, cb);
-        }
-
-        public void GetRecentGames(int summonerID, UnclassedObject.Callback callback)
-        {
-            UnclassedObject cb = new UnclassedObject(callback);
-            InvokeWithCallback("playerStatsService", "getRecentGames", new object[] { summonerID }, cb);
-        }
-
-        public void GetSummonerRuneInventory(int summonerID, UnclassedObject.Callback callback)
-        {
-            UnclassedObject cb = new UnclassedObject(callback);
-            InvokeWithCallback("summonerRuneService", "getSummonerRuneInventory", new object[] { summonerID }, cb);
-        }
-
-        public void GetAllPublicSummonerDataByAccount(int summonerID, UnclassedObject.Callback callback)
-        {
-            UnclassedObject cb = new UnclassedObject(callback);
-            InvokeWithCallback("summonerService", "getAllPublicSummonerDataByAccount", new object[] { summonerID }, cb);
-        }
-
-        public void GetAllSummonerDataByAccount(int summonerID, AllSummonerData.Callback callback)
+        public void GetAllSummonerDataByAccount(int accountID, AllSummonerData.Callback callback)
         {
             AllSummonerData cb = new AllSummonerData(callback);
-            InvokeWithCallback("summonerService", "getAllSummonerDataByAccount", new object[] { summonerID }, cb);
+            InvokeWithCallback("summonerService", "getAllSummonerDataByAccount", new object[] { accountID }, cb);
         }
 
-        public void GetSummonerByName(string summonerName, Summoner.Callback callback)
+        public void GetSummonerByName(string summonerName, PublicSummoner.Callback callback)
         {
-            Summoner cb = new Summoner(callback);
+            PublicSummoner cb = new PublicSummoner(callback);
             InvokeWithCallback("summonerService", "getSummonerByName", new object[] { summonerName }, cb);
         }
 
