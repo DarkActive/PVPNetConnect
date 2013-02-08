@@ -282,5 +282,490 @@
             The summoner ID number.
             </summary>
         </member>
+        <member name="T:PVPNetConnect.RiotObjects.Game.PlatformGameLifecycle">
+            <summary>
+            Class with in progress game and spectator info.
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Game.PlatformGameLifecycle.ReconnectDelay">
+            <summary>
+            Reconnect delay.
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Game.PlatformGameLifecycle.LastModifiedDate">
+            <summary>
+            Last date modified.
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Game.PlatformGameLifecycle.Game">
+            <summary>
+            Game information of in progress.
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Game.PlatformGameLifecycle.PlayerCredentials">
+            <summary>
+            The player credentials for spectating the game.
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Game.PlatformGameLifecycle.GameName">
+            <summary>
+            The name of the game.
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Game.PlatformGameLifecycle.ConnectivityStateEnum">
+            <summary>
+            Connectivity state enum ???
+            </summary>
+        </member>
+        <member name="T:PVPNetConnect.RiotObjects.Game.GameDTO">
+            <summary>
+            Class with in progress game and spectator info.
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Game.GameDTO.Id">
+            <summary>
+            ID of game.
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Game.GameDTO.Name">
+            <summary>
+            Game name.
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Game.GameDTO.RoomName">
+            <summary>
+            Chat room name.
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Game.GameDTO.PasswordSet">
+            <summary>
+            If there is a game password.
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Game.GameDTO.SpectatorsAllowed">
+            <summary>
+            Spectators allowed setting.
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Game.GameDTO.SpectatorDelay">
+            <summary>
+            Spectator delay in seconds.
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Game.GameDTO.GameType">
+            <summary>
+            Type of game.
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Game.GameDTO.GameTypeConfigId">
+            <summary>
+            The game type config ID.
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Game.GameDTO.GameState">
+            <summary>
+            Current State of game, (TEAM_SELECT, CHAMP_SELECT), etc..
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Game.GameDTO.GameMode">
+            <summary>
+            Game Mode (CLASSIC, DOMINION).
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Game.GameDTO.MapId">
+            <summary>
+            ID of the map.
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Game.GameDTO.MaxNumPlayers">
+            <summary>
+            Maximum number of players allowed
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Game.GameDTO.ExpiryTime">
+            <summary>
+            Expiration time of lobby.
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Game.GameDTO.QueueTypeName">
+            <summary>
+            The name of the queue type
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Game.GameDTO.QueuePosition">
+            <summary>
+            Position in the queue.
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Game.GameDTO.PickTurn">
+            <summary>
+            Pick turn number to pick champion.
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Game.GameDTO.OwnerSummary">
+            <summary>
+            Summary of game owner/creator (PlayerParticipant).
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Game.GameDTO.TeamOne">
+            <summary>
+            List of Players (PlayerParticipant) on Team One (A).
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Game.GameDTO.TeamTwo">
+            <summary>
+            List of Players (PlayerParticipant) on Team Two (B).
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Game.GameDTO.PlayerChampionSelections">
+            <summary>
+            List of Players and the champs they selected.
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Game.GameDTO.Observers">
+            <summary>
+            List of observers.
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Game.GameDTO.BanOrder">
+            <summary>
+            Ban order (team number array)
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Game.GameDTO.BannedChampions">
+            <summary>
+            List of banned champions.
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Game.GameDTO.OptimisticLock">
+            <summary>
+            Optimistic lock ???
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Game.GameDTO.StatusOfParticipants">
+            <summary>
+            Status of participants, 0s and 1s
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Game.GameDTO.TerminatedCondition">
+            <summary>
+            Condition if game is terminated or done.
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Game.GameDTO.RoomPassword">
+            <summary>
+            Condition if game is terminated or done.
+            </summary>
+        </member>
+        <member name="T:PVPNetConnect.RiotObjects.Game.PlayerCredentials">
+            <summary>
+            Class with playercredentials info to spectate a game.
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Game.PlayerCredentials.EncryptionKey">
+            <summary>
+            Encryption key.
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Game.PlayerCredentials.GameId">
+            <summary>
+            Game ID number.
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Game.PlayerCredentials.ServerIP">
+            <summary>
+            Game server IP.
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Game.PlayerCredentials.Observer">
+            <summary>
+            Are there observers?
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Game.PlayerCredentials.ObserverServerIP">
+            <summary>
+            Observer server IP.
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Game.PlayerCredentials.HandshakeToken">
+            <summary>
+            HandshakeToken ???
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Game.PlayerCredentials.PlayerID">
+            <summary>
+            Player ID (of observer???)
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Game.PlayerCredentials.ServerPort">
+            <summary>
+            Game server port.
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Game.PlayerCredentials.ObserverServerPort">
+            <summary>
+            Observer server port.
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Game.PlayerCredentials.SummonerName">
+            <summary>
+            Summoner name (of observer???)
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Game.PlayerCredentials.ObserverEncryptionKey">
+            <summary>
+            Observer encryption key.
+            </summary>
+        </member>
+        <member name="T:PVPNetConnect.RiotObjects.Game.BannedChampion">
+            <summary>
+            Class with banned champion information at specific ban turn.
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Game.BannedChampion.PickTurn">
+            <summary>
+            Order of ban, pick turn
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Game.BannedChampion.ChampionID">
+            <summary>
+            Banned champion ID number.
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Game.BannedChampion.TeamID">
+            <summary>
+            Id of Team (100 = 1, 200 = 2)
+            </summary>
+        </member>
+        <member name="T:PVPNetConnect.RiotObjects.Game.GameObserver">
+            <summary>
+            Class with in progress game and spectator info.
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Game.GameObserver.AccountID">
+            <summary>
+            The account ID number of observer.
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Game.GameObserver.SummonerID">
+            <summary>
+            The summoner ID number of observer.
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Game.GameObserver.BotDifficulty">
+            <summary>
+            The difficulty of the bot (NONE,...)
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Game.GameObserver.SummonerInternalName">
+            <summary>
+            Summoner name of the observer
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Game.GameObserver.SummonerName">
+            <summary>
+            Summoner name of the observer
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Game.GameObserver.LastSelectedSkinID">
+            <summary>
+            The skin ID that was last selected by the observer (summoner).
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Game.GameObserver.ProfileIconID">
+            <summary>
+            The profile icon ID of the observer (summoner).
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Game.GameObserver.Badges">
+            <summary>
+            Badges ??? unknown significance, seems to be int.
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Game.GameObserver.PickTurn">
+            <summary>
+            Pickturn of observer (probably always 0).
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Game.GameObserver.PickMode">
+            <summary>
+            PickMode of the game.
+            </summary>
+        </member>
+        <member name="T:PVPNetConnect.RiotObjects.Game.PlayerParticipant">
+            <summary>
+            Class with in progress game and spectator info.
+            </summary>
+        </member>
+        <member name="F:PVPNetConnect.RiotObjects.Game.PlayerParticipant.PartnerID">
+            <summary>
+            Partner ID (probably duo queue partner ID ??)
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Game.PlayerParticipant.AccountID">
+            <summary>
+            The account ID number of observer.
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Game.PlayerParticipant.SummonerID">
+            <summary>
+            The summoner ID number of observer.
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Game.PlayerParticipant.TimeAddedToQueue">
+            <summary>
+            The summoner ID number of observer.
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Game.PlayerParticipant.Index">
+            <summary>
+            Index of player participant (1 to 10, [Team1,p1] = 1 [team2,p1] = 6)
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Game.PlayerParticipant.QueueRating">
+            <summary>
+            Rating for queue Type
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Game.PlayerParticipant.BotDifficulty">
+            <summary>
+            The difficulty of the bot (NONE,...)
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Game.PlayerParticipant.OriginalAccountNumber">
+            <summary>
+            The original Account ID number (probably)
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Game.PlayerParticipant.SummonerInternalName">
+            <summary>
+            Summoner name of the observer
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Game.PlayerParticipant.SummonerName">
+            <summary>
+            Summoner name of the observer
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Game.PlayerParticipant.Minor">
+            <summary>
+            Boolean value of "minor" (??)
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Game.PlayerParticipant.LastSelectedSkinID">
+            <summary>
+            The skin ID that was last selected by the observer (summoner).
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Game.PlayerParticipant.ProfileIconID">
+            <summary>
+            The profile icon ID of the observer (summoner).
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Game.PlayerParticipant.TeamOwner">
+            <summary>
+            Is this player the team owner? (boolean)
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Game.PlayerParticipant.Badges">
+            <summary>
+            Badges ??? unknown significance, seems to be int.
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Game.PlayerParticipant.PickTurn">
+            <summary>
+            Pickturn of observer (probably always 0).
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Game.PlayerParticipant.PickMode">
+            <summary>
+            PickMode of the game.
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Game.PlayerParticipant.ClientInSynch">
+            <summary>
+            Is client in synch? (boolean)
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Game.PlayerParticipant.OriginalPlatformID">
+            <summary>
+            Original platform ID (NA, EUW, EUNE,...)
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Game.PlayerParticipant.teamParticipantID">
+            <summary>
+            The ID number of this team participant
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Statistics.ChampionStatInfo.TotalGamesPlayed">
+            <summary>
+            Total amount of games played with champion.
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Statistics.ChampionStatInfo.AccountID">
+            <summary>
+            Account ID number of summoner.
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Statistics.ChampionStatInfo.Stats">
+            <summary>
+            List of different aggregated stats with champion
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Statistics.ChampionStatInfo.ChampionID">
+            <summary>
+            The champion ID number.
+            </summary>
+        </member>
+        <member name="T:PVPNetConnect.RiotObjects.Game.PlayerChampionSelection">
+            <summary>
+            Class with in progress game and spectator info.
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Game.PlayerChampionSelection.SummonerInternalName">
+            <summary>
+            Summoner name of the player.
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Game.PlayerChampionSelection.SelectedSkinID">
+            <summary>
+            The skin ID that is selected by player.
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Game.PlayerChampionSelection.Spell1ID">
+            <summary>
+            The selected summoner spell 1 (D spell).
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Game.PlayerChampionSelection.Spell2ID">
+            <summary>
+            The ID number of the selected summoner spell 2 (F spell).
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Game.PlayerChampionSelection.ChampionID">
+            <summary>
+            The ID number of the selected champion.
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Statistics.AggregatedStat.StatType">
+            <summary>
+            The string that defines the stat type.
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Statistics.AggregatedStat.Count">
+            <summary>
+            Count of stat??? (usually 0)
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Statistics.AggregatedStat.Value">
+            <summary>
+            The value of the stat.
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Statistics.AggregatedStat.ChampionID">
+            <summary>
+            The champion ID number.
+            </summary>
+        </member>
     </members>
 </doc>

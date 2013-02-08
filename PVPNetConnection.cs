@@ -25,6 +25,7 @@ using System.Web.Script.Serialization;
 using PVPNetConnect.RiotObjects;
 using PVPNetConnect.RiotObjects.Summoner;
 using PVPNetConnect.RiotObjects.Client;
+using PVPNetConnect.RiotObjects.Game;
 
 namespace PVPNetConnect
 {
@@ -968,10 +969,21 @@ namespace PVPNetConnect
                         //If it isn't, give an error and remove the callback if there is one.
                         if (result["result"].Equals("_error"))
                         {
-                            Error(GetErrorMessage(result), ErrorType.Receive);
+                            Error("Warning, invalid result (" + callbacks[(int)id].GetType() + ") : " + GetErrorMessage(result), ErrorType.Receive);
 
                             if (callbacks.ContainsKey((int)id))
+                            {
+                                RiotGamesObject cb = callbacks[(int)id];
+                                //TODO: better way then current hotfix to send PlatformGame as a null value
+                                if (cb.GetType().ToString() == "PVPNetConnect.RiotObjects.Game.PlatformGameLifecycle")
+                                {
+                                    if (cb != null)
+                                    {
+                                        cb.DoCallback(null);
+                                    }
+                                }
                                 callbacks.Remove((int)id);
+                            }
                         }
 
 
@@ -1106,6 +1118,12 @@ namespace PVPNetConnect
         {
             UnclassedObject cb = new UnclassedObject(callback);
             InvokeWithCallback("summonerService", "getSummonerNames", new object[] { summonerIDs }, cb);
+        }
+
+        public void RetrieveInProgressSpectatorGameInfo(string summonerName, PlatformGameLifecycle.Callback callback)
+        {
+            PlatformGameLifecycle cb = new PlatformGameLifecycle(callback);
+            InvokeWithCallback("gameService", "retrieveInProgressSpectatorGameInfo", new object[] { summonerName }, cb);
         }
 
         //Chat Information Methods

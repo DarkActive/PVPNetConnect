@@ -168,6 +168,12 @@ namespace PVPNetConnect
             ret.Add((byte)0x05);
             WriteDouble(ret, (double)obj);
          }
+         // added for long objects to be added as double, not sure will work
+         else if (obj is long)
+         {
+             ret.Add((byte)0x05);
+             WriteDouble(ret, (double)obj);
+         }
          else if (obj is string)
          {
             ret.Add((byte)0x06);
