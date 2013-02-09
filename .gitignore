@@ -7,7 +7,7 @@
 .metadata
 bin/Debug/PVPNetConnect.*
 obj/Debug/*
-Properties/*
+Properties/AssemblyInfo.cs
 bin/
 bin
 Debug
