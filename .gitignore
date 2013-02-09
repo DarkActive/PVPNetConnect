@@ -6,11 +6,16 @@
 .project
 .metadata
 bin/Debug/PVPNetConnect.*
+obj/Debug/*
+Properties/*
 bin/
 bin
 Debug
 Debug/
 *.sln
+PVPNetConnect.sln
+PVPNetConnect.csproj
+PVPNetConnect.csproj.user
 tmp/
 *.tmp
 *.bak
