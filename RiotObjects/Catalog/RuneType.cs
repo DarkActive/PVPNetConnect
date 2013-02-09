@@ -22,7 +22,7 @@ namespace PVPNetConnect.RiotObjects.Catalog
         /// ID number of rune type.
         /// </summary>
         [InternalName("runeTypeId")]
-        public int RuneTypeId { get; set; }
+        public int RuneTypeID { get; set; }
 
         /// <summary>
         /// Name of rune type.

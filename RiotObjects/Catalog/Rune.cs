@@ -40,7 +40,7 @@ namespace PVPNetConnect.RiotObjects.Catalog
         /// Item ID of the rune.
         /// </summary>
         [InternalName("itemId")]
-        public int ItemId { get; set; }
+        public int ItemID { get; set; }
 
         /// <summary>
         /// Class that specifies the rune type.
@@ -60,6 +60,9 @@ namespace PVPNetConnect.RiotObjects.Catalog
         [InternalName("gameCode")]
         public int GameCode { get; set; }
 
+        /// <summary>
+        /// List of Item Effects.
+        /// </summary>
         [InternalName("itemEffects")]
         public List<ItemEffect> ItemEffects { get; set; }
 

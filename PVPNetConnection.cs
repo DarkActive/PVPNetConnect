@@ -1145,6 +1145,18 @@ namespace PVPNetConnect
             InvokeWithCallback("gameService", "retrieveInProgressSpectatorGameInfo", new object[] { summonerName }, cb);
         }
 
+        public void GetMasteryBook(int summonerID, MasteryBook.Callback callback)
+        {
+            MasteryBook cb = new MasteryBook(callback);
+            InvokeWithCallback("masteryBookService", "getMasteryBook", new object[] { summonerID }, cb);
+        }
+
+        public void GetSpellBook(int summonerID, SpellBook.Callback callback)
+        {
+            SpellBook cb = new SpellBook(callback);
+            InvokeWithCallback("spellBookService", "getSpellBook", new object[] { summonerID }, cb);
+        }
+
         // TODO: Not working because return type is only an object array
         public void RetrieveTopPlayedChampions(int accountID, StringEnum.GameModes gameMode, TopPlayedChampions.Callback callback)
         {

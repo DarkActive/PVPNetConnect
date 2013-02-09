@@ -20,15 +20,27 @@ namespace PVPNetConnect.RiotObjects.Summoner
 
         #region Member Properties
 
+        /// <summary>
+        /// Rune ID number.
+        /// </summary>
         [InternalName("runeId")]
-        public int RuneId { get; set; }
+        public int RuneID { get; set; }
 
+        /// <summary>
+        /// Rune Slot ID number.
+        /// </summary>
         [InternalName("runeSlotId")]
-        public int RuneSlotId { get; set; }
+        public int RuneSlotID { get; set; }
 
+        /// <summary>
+        /// RuneSlot class with information about Rune Slot.
+        /// </summary>
         [InternalName("runeSlot")]
         public RuneSlot RuneSlot { get; set; }
 
+        /// <summary>
+        /// Rune class with information about rune.
+        /// </summary>
         [InternalName("rune")]
         public Rune Rune { get; set; }
 

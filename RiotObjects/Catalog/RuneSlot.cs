@@ -22,7 +22,7 @@ namespace PVPNetConnect.RiotObjects.Catalog
         /// ID number of rune slot.
         /// </summary>
         [InternalName("id")]
-        public int Id { get; set; }
+        public int RuneSlotID { get; set; }
 
         /// <summary>
         /// Minimum level required for rune slot.
