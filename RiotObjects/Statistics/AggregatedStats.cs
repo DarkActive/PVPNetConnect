@@ -32,19 +32,19 @@ namespace PVPNetConnect.RiotObjects.Statistics
         #region Member Properties
 
         /// <summary>
-        /// The string that defines the stat type.
+        /// The lifetime statistics that make up aggregaged stat.
         /// </summary>
         [InternalName("lifetimeStatistics")]
         public List<AggregatedStat> LifetimeStatistics { get; set; }
 
         /// <summary>
-        /// Count of stat??? (usually 0)
+        /// The date that aggregated stats was modified.
         /// </summary>
         [InternalName("modifyDate")]
         public DateTime DateModified { get; set; }
 
         /// <summary>
-        /// The value of the stat.
+        /// The Aggregated stat key with general info
         /// </summary>
         [InternalName("key")]
         public AggregatedStatKey Key { get; set; }

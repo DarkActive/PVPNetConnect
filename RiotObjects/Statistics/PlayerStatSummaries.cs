@@ -9,32 +9,31 @@ namespace PVPNetConnect.RiotObjects.Statistics
     {
         #region Constructors and Callbacks
 
-        public PlayerStatSummaries(Callback callback)
-        {
-            this.callback = callback;
-        }
-
         public PlayerStatSummaries(TypedObject result)
         {
             base.SetFields<PlayerStatSummaries>(this, result);
         }
-
-
-        public delegate void Callback(PlayerStatSummaries result);
-        private Callback callback;
         public override void DoCallback(TypedObject result)
         {
-            base.SetFields<PlayerStatSummaries>(this, result);
-            callback(this);
         }
 
         #endregion
 
-        //public List<PlayerStatSummary> playerStatSummarySet;
-        //May be a real value, using int out of convenience
+        #region Member Properties
 
+        /// <summary>
+        /// The list of all player stat summaries for each queue type (ranked, normal, etc)
+        /// </summary>
+        [InternalName("playerStatSummarySet")]
+        public List<PlayerStatSummary> PlayerStatSummaryList;
+
+        /// <summary>
+        /// The Acount ID number.
+        /// </summary>
         [InternalName("userId")]
-        public double UserId { get; set; }
+        public int AccountID { get; set; }
+
+        #endregion
 
     }
 }

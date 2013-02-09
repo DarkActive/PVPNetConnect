@@ -280,7 +280,7 @@ namespace PVPNetConnect
          }
          else
          {
-            return (DateTime)objectReferences[handle];
+             return DateTime.MinValue;
          }
       }
 

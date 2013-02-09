@@ -24,19 +24,19 @@ namespace PVPNetConnect.RiotObjects.Statistics
         #region Member Properties
 
         /// <summary>
-        /// The string that defines the stat type.
+        /// The game mode that this aggregated stat is for.
         /// </summary>
         [InternalName("gameMode")]
         public string GameMode { get; set; }
 
         /// <summary>
-        /// Count of stat??? (usually 0)
+        /// The account ID number that this aggregated stat is for.
         /// </summary>
         [InternalName("userId")]
         public int AccountID { get; set; }
 
         /// <summary>
-        /// The value of the stat.
+        /// The game mode string that this aggregated stat is for.
         /// </summary>
         [InternalName("gameModeString")]
         public string GameModeString { get; set; }

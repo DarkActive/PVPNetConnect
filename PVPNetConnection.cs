@@ -21,7 +21,7 @@ using System.Text;
 using System.Threading;
 using System.Web.Script.Serialization;
 
-
+using PVPNetConnect.Assets;
 using PVPNetConnect.RiotObjects;
 using PVPNetConnect.RiotObjects.Summoner;
 using PVPNetConnect.RiotObjects.Statistics;
@@ -1127,10 +1127,16 @@ namespace PVPNetConnect
             InvokeWithCallback("playerStatsService", "getRecentGames", new object[] { accountID }, cb);
         }
 
-        public void GetAggregatedStats(int accountID, string gameType, string season, AggregatedStats.Callback callback)
+        public void RetrievePlayerStatsByAccountId(int accountID, StringEnum.Seasons season, PlayerLifetimeStats.Callback callback)
+        {
+            PlayerLifetimeStats cb = new PlayerLifetimeStats(callback);
+            InvokeWithCallback("playerStatsService", "retrievePlayerStatsByAccountId", new object[] { accountID, StringEnum.GetStringValue(season) }, cb);
+        }
+
+        public void GetAggregatedStats(int accountID, StringEnum.GameModes gameMode, StringEnum.Seasons season, AggregatedStats.Callback callback)
         {
             AggregatedStats cb = new AggregatedStats(callback);
-            InvokeWithCallback("playerStatsService", "getAggregatedStats", new object[] { accountID, gameType, season }, cb);
+            InvokeWithCallback("playerStatsService", "getAggregatedStats", new object[] { accountID, StringEnum.GetStringValue(gameMode), StringEnum.GetStringValue(season) }, cb);
         }
 
         public void RetrieveInProgressSpectatorGameInfo(string summonerName, PlatformGameLifecycle.Callback callback)
@@ -1140,10 +1146,10 @@ namespace PVPNetConnect
         }
 
         // TODO: Not working because return type is only an object array
-        public void RetrieveTopPlayedChampions(int accountID, string gameMode, TopPlayedChampions.Callback callback)
+        public void RetrieveTopPlayedChampions(int accountID, StringEnum.GameModes gameMode, TopPlayedChampions.Callback callback)
         {
             TopPlayedChampions cb = new TopPlayedChampions(callback);
-            InvokeWithCallback("gameService", "retrieveInProgressSpectatorGameInfo", new object[] { accountID, gameMode }, cb);
+            InvokeWithCallback("playerStatsService", "retrieveTopPlayedChampions", new object[] { accountID, StringEnum.GetStringValue(gameMode) }, cb);
         }
 
         //Chat Information Methods
