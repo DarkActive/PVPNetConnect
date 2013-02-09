@@ -9,7 +9,7 @@ namespace PVPNetConnect.RiotObjects
 {
    public abstract class RiotGamesObject
    {
-      public abstract void DoCallback(TypedObject result);
+      public virtual void DoCallback(TypedObject result);
 
       public void SetFields<T>(T obj, TypedObject result)
       {

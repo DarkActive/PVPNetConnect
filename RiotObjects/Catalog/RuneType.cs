@@ -9,23 +9,9 @@ namespace PVPNetConnect.RiotObjects.Catalog
     {
         #region Constructors and Callbacks
 
-        public RuneType(Callback callback)
-        {
-            this.callback = callback;
-        }
-
         public RuneType(TypedObject result)
         {
             base.SetFields<RuneType>(this, result);
-        }
-
-
-        public delegate void Callback(RuneType result);
-        private Callback callback;
-        public override void DoCallback(TypedObject result)
-        {
-            base.SetFields<RuneType>(this, result);
-            callback(this);
         }
 
         #endregion

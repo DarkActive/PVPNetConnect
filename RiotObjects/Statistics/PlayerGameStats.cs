@@ -14,11 +14,6 @@ namespace PVPNetConnect.RiotObjects.Statistics
             base.SetFields<PlayerGameStats>(this, result);
         }
 
-        public override void DoCallback(TypedObject obj)
-        {
-            return;
-        }
-
         #endregion
 
         #region Member Properties

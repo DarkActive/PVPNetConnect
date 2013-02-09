@@ -14,11 +14,6 @@ namespace PVPNetConnect.RiotObjects.Statistics
             base.SetFields<AggregatedStatKey>(this, result);
         }
 
-        public override void DoCallback(TypedObject obj)
-        {
-            return;
-        }
-
         #endregion
 
         #region Member Properties

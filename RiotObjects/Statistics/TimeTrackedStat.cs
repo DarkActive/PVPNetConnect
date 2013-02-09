@@ -14,10 +14,6 @@ namespace PVPNetConnect.RiotObjects.Statistics
             base.SetFields<TimeTrackedStat>(this, result);
         }
 
-        public override void DoCallback(TypedObject result)
-        {
-        }
-
         #endregion
 
         #region Member Properties

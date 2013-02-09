@@ -14,11 +14,6 @@ namespace PVPNetConnect.RiotObjects.Summoner
             base.SetFields<SummonerLevel>(this, result);
         }
 
-        public override void DoCallback(TypedObject obj)
-        {
-            return;
-        }
-
         #endregion
 
         #region Member Properties

@@ -13,9 +13,6 @@ namespace PVPNetConnect.RiotObjects.Statistics
         {
             base.SetFields<PlayerStatSummaries>(this, result);
         }
-        public override void DoCallback(TypedObject result)
-        {
-        }
 
         #endregion
 
