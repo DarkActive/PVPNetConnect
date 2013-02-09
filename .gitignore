@@ -6,6 +6,9 @@
 .project
 .metadata
 bin/
+bin
+Debug
+Debug/
 *.sln
 tmp/
 *.tmp
@@ -16,6 +19,7 @@ local.properties
 .classpath
 .settings/
 .loadpath
+PVPNetConnect.*
 
 # External tool builders
 .externalToolBuilders/
