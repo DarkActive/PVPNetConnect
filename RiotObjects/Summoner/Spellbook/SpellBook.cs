@@ -14,6 +14,11 @@ namespace PVPNetConnect.RiotObjects.Summoner
             base.SetFields<SpellBook>(this, result);
         }
 
+        public override void DoCallback(TypedObject obj)
+        {
+            return;
+        }
+
         #endregion
 
         #region Member Properties

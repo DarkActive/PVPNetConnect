@@ -17,6 +17,11 @@ namespace PVPNetConnect.RiotObjects.Game
             base.SetFields<BannedChampion>(this, result);
         }
 
+        public override void DoCallback(TypedObject obj)
+        {
+            return;
+        }
+
         #endregion
 
         #region Member Properties

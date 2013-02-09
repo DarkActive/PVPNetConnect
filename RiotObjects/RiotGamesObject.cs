@@ -11,7 +11,6 @@ namespace PVPNetConnect.RiotObjects
    {
       public abstract void DoCallback(TypedObject result);
 
-
       public void SetFields<T>(T obj, TypedObject result)
       {
          if (result == null)

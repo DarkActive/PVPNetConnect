@@ -1127,6 +1127,12 @@ namespace PVPNetConnect
             InvokeWithCallback("playerStatsService", "getRecentGames", new object[] { accountID }, cb);
         }
 
+        public void GetAggregatedStats(int accountID, string gameType, string season, AggregatedStats.Callback callback)
+        {
+            AggregatedStats cb = new AggregatedStats(callback);
+            InvokeWithCallback("playerStatsService", "getAggregatedStats", new object[] { accountID, gameType, season }, cb);
+        }
+
         public void RetrieveInProgressSpectatorGameInfo(string summonerName, PlatformGameLifecycle.Callback callback)
         {
             PlatformGameLifecycle cb = new PlatformGameLifecycle(callback);

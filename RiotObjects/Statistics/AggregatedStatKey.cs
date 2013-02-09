@@ -5,24 +5,13 @@ using System.Text;
 
 namespace PVPNetConnect.RiotObjects.Statistics
 {
-    public class RawStat : RiotGamesObject
+    public class AggregatedStatKey : RiotGamesObject
     {
         #region Constructors and Callbacks
 
-        /// <summary>
-        /// Create an empty Class
-        /// </summary>
-        public RawStat()
+        public AggregatedStatKey(TypedObject result)
         {
-        }
-
-        /// <summary>
-        /// Create the Class with a TypedObject result
-        /// </summary>
-        /// <param name="result"></param>
-        public RawStat(TypedObject result)
-        {
-            base.SetFields<RawStat>(this, result);
+            base.SetFields<AggregatedStatKey>(this, result);
         }
 
         public override void DoCallback(TypedObject obj)
@@ -37,14 +26,20 @@ namespace PVPNetConnect.RiotObjects.Statistics
         /// <summary>
         /// The string that defines the stat type.
         /// </summary>
-        [InternalName("statType")]
-        public string StatType { get; set; }
+        [InternalName("gameMode")]
+        public string GameMode { get; set; }
+
+        /// <summary>
+        /// Count of stat??? (usually 0)
+        /// </summary>
+        [InternalName("userId")]
+        public int AccountID { get; set; }
 
         /// <summary>
         /// The value of the stat.
         /// </summary>
-        [InternalName("value")]
-        public int Value { get; set; }
+        [InternalName("gameModeString")]
+        public string GameModeString { get; set; }
 
         #endregion
     }
