@@ -309,6 +309,32 @@ namespace PVPNetConnect
          }
       }
 
+      private static List<object> ReadList()
+      {
+          int handle = ReadInt();
+          bool inline = ((handle & 1) != 0);
+          handle = handle >> 1;
+
+          if (inline)
+          {
+              string key = ReadString();
+              if (key != null && !key.Equals(""))
+                  throw new NotImplementedException("Associative arrays are not supported");
+
+              List<object> ret = new List<object>();
+              objectReferences.Add(ret);
+
+              for (int i = 0; i < handle; i++)
+                  ret.Add(Decode());
+
+              return ret;
+          }
+          else
+          {
+              return (List<object>)objectReferences[handle];
+          }
+      }
+
       private static object ReadObject()
       {
          int handle = ReadInt();

@@ -24,6 +24,7 @@ using System.Web.Script.Serialization;
 
 using PVPNetConnect.RiotObjects;
 using PVPNetConnect.RiotObjects.Summoner;
+using PVPNetConnect.RiotObjects.Statistics;
 using PVPNetConnect.RiotObjects.Client;
 using PVPNetConnect.RiotObjects.Game;
 
@@ -1118,6 +1119,12 @@ namespace PVPNetConnect
         {
             UnclassedObject cb = new UnclassedObject(callback);
             InvokeWithCallback("summonerService", "getSummonerNames", new object[] { summonerIDs }, cb);
+        }
+
+        public void GetRecentGames(int accountID, RecentGames.Callback callback)
+        {
+            RecentGames cb = new RecentGames(callback);
+            InvokeWithCallback("playerStatsService", "getRecentGames", new object[] { accountID }, cb);
         }
 
         public void RetrieveInProgressSpectatorGameInfo(string summonerName, PlatformGameLifecycle.Callback callback)

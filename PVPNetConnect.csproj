@@ -79,6 +79,10 @@
     <Compile Include="RiotObjects\Game\PlatformGameLifecycle.cs" />
     <Compile Include="RiotObjects\Statistics\ChampionStatInfo.cs" />
     <Compile Include="RiotObjects\Statistics\AggregatedStat.cs" />
+    <Compile Include="RiotObjects\Statistics\FellowPlayerInfo.cs" />
+    <Compile Include="RiotObjects\Statistics\RawStat.cs" />
+    <Compile Include="RiotObjects\Statistics\PlayerGameStats.cs" />
+    <Compile Include="RiotObjects\Statistics\RecentGames.cs" />
     <Compile Include="RiotObjects\Summoner\PublicSummoner.cs" />
     <Compile Include="RiotObjects\RiotGamesObject.cs" />
     <Compile Include="RiotObjects\Statistics\PlayerStatSummaries.cs" />

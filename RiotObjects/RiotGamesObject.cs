@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections;
 using System.Linq;
 using System.Text;
 using System.Reflection;
@@ -61,26 +62,43 @@ namespace PVPNetConnect.RiotObjects
                {
                   value = (TypedObject)result[intern.Name];
                }
-               
-               else if (type == typeof(ArrayCollection))
+
+               else if (type.GetGenericTypeDefinition() == typeof(List<>))
                {
-                  value = new ArrayCollection(result.GetArray(intern.Name));
+                   object[] temp = result.GetArray(intern.Name);
+
+                   // Create List<T> with correct T type by reflection
+                   Type elementType = type.GetGenericArguments()[0];
+                   var genericListType = typeof(List<>).MakeGenericType(new[] { elementType });
+                   IList objectList = (IList)Activator.CreateInstance(genericListType);           
+
+                   foreach (object data in temp)
+                   {
+                       objectList.Add(Activator.CreateInstance(elementType, data));
+                   }
+
+                   value = objectList;
+               }
+
+               else if (type == typeof(object[]))
+               {
+                   value = new ArrayCollection(result.GetArray(intern.Name));
                }
                else if (type == typeof(object))
                {
-                  value = result[intern.Name];
+                   value = result[intern.Name];
                }
                else
                {
-                  try
-                  {
-                     value = Activator.CreateInstance(type, result[intern.Name]);
-                  }
-                  catch (Exception e)
-                  {
-                     throw new NotSupportedException(string.Format("Type {0} not supported by flash serializer", type.FullName), e);
+                   try
+                   {
+                       value = Activator.CreateInstance(type, result[intern.Name]);
+                   }
+                   catch (Exception e)
+                   {
+                       throw new NotSupportedException(string.Format("Type {0} not supported by flash serializer", type.FullName), e);
 
-                  }
+                   }
                }
                prop.SetValue(obj, value, null);
             }

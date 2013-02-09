@@ -767,5 +767,313 @@
             The champion ID number.
             </summary>
         </member>
+        <member name="P:PVPNetConnect.RiotObjects.Statistics.RecentGames.AccountID">
+            <summary>
+            The account ID of the user whose recent games list is.
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Statistics.RecentGames.GameStatsList">
+            <summary>
+            List of the recent games and their stats.
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Statistics.PlayerGameStats.ChampionName">
+            <summary>
+            Name of champion (unreliable).
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Statistics.PlayerGameStats.IsRanked">
+            <summary>
+            Is Ranked game? (boolean)
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Statistics.PlayerGameStats.SkinIndex">
+            <summary>
+            ID number of champion skin used
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Statistics.PlayerGameStats.FellowPlayers">
+            <summary>
+            List of players in game.
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Statistics.PlayerGameStats.GameType">
+            <summary>
+            Type of game.
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Statistics.PlayerGameStats.ExperienceEarned">
+            <summary>
+            XP earned from game.
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Statistics.PlayerGameStats.IsFirstWinOfDay">
+            <summary>
+            Was eligible for First win of day? (boolean)
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Statistics.PlayerGameStats.Difficulty">
+            <summary>
+            Difficulty (unreliable)
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Statistics.PlayerGameStats.GameMapID">
+            <summary>
+            ID of Map.
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Statistics.PlayerGameStats.IsLeaver">
+            <summary>
+            Marked as a leaver? (boolean)
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Statistics.PlayerGameStats.SummSpellD">
+            <summary>
+            Summoner Spell 1 (1) ID number.
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Statistics.PlayerGameStats.SummSpellF">
+            <summary>
+            Summoner Spell F (2) ID number.
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Statistics.PlayerGameStats.GameTypeEnum">
+            <summary>
+            Game Type enum (usually same as gameType).
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Statistics.PlayerGameStats.TeamID">
+            <summary>
+            The team ID number (100 = Blue, 200 = Purple)
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Statistics.PlayerGameStats.SummonerId">
+            <summary>
+            Summoner ID number of player.
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Statistics.PlayerGameStats.PlayerStats">
+            <summary>
+            Player stats like kills, deaths, minions, etc...
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Statistics.PlayerGameStats.IsAFK">
+            <summary>
+            Is marked as AFK? (boolean)
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Statistics.PlayerGameStats.HistoryID">
+            <summary>
+            IS NOT GAME ID!!! Some type of ID involving the game (maybe match history ID?).
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Statistics.PlayerGameStats.BoostXPEarned">
+            <summary>
+            Amount of boost XP earned.
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Statistics.PlayerGameStats.Level">
+            <summary>
+            Summoner level after the game.
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Statistics.PlayerGameStats.IsInvalid">
+            <summary>
+            Invalid game? (boolean)
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Statistics.PlayerGameStats.AccountID">
+            <summary>
+            Account ID of player
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Statistics.PlayerGameStats.CreateDate">
+            <summary>
+            Date/Time of game creation
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Statistics.PlayerGameStats.UserServerPing">
+            <summary>
+            Average Ping of user to server
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Statistics.PlayerGameStats.AdjustedRating">
+            <summary>
+            Adjusted Rating (Riot hides this value)
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Statistics.PlayerGameStats.PremadeSize">
+            <summary>
+            Size of premade team, 1 if not premade team.
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Statistics.PlayerGameStats.BoostIPEarned">
+            <summary>
+            Boost IP earned.
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Statistics.PlayerGameStats.GameId">
+            <summary>
+            ID number of the game.
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Statistics.PlayerGameStats.TimeInQueue">
+            <summary>
+            Time in Queue in SECONDS.
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Statistics.PlayerGameStats.IPEarned">
+            <summary>
+            IP earned from game.
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Statistics.PlayerGameStats.EloChange">
+            <summary>
+            ELO Change (Riot hides this Value)
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Statistics.PlayerGameStats.GameMode">
+            <summary>
+            Game Mode: (CLASSIC, DOMINION, etc)
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Statistics.PlayerGameStats.DifficultyString">
+            <summary>
+            Difficulty String (unreliable)
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Statistics.PlayerGameStats.KCoefficient">
+            <summary>
+            Think has to do with ELO (riot hides this value)
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Statistics.PlayerGameStats.TeamRating">
+            <summary>
+            TEAM Rating based on ELO (riot hides this value)
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Statistics.PlayerGameStats.SubType">
+            <summary>
+            SubType of game (same as QueueType USUALLY)
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Statistics.PlayerGameStats.QueueType">
+            <summary>
+            Queue Type of game
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Statistics.PlayerGameStats.IsPremadeTeam">
+            <summary>
+            Premade Team (seems to only mean full premade = 5 players)
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Statistics.PlayerGameStats.PredictedWinPercent">
+            <summary>
+            Predicted outcome based on elo? (Riot hides this value)
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Statistics.PlayerGameStats.Rating">
+            <summary>
+            ELO after game (Riot hides this value)
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Statistics.PlayerGameStats.ChampionID">
+            <summary>
+            ID of champion used.
+            </summary>
+        </member>
+        <member name="M:PVPNetConnect.RiotObjects.Statistics.RawStat.#ctor">
+            <summary>
+            Create an empty Class
+            </summary>
+        </member>
+        <member name="M:PVPNetConnect.RiotObjects.Statistics.RawStat.#ctor(PVPNetConnect.RiotObjects.Statistics.RawStat.Callback)">
+            <summary>
+            Create the Class with a callback.
+            </summary>
+            <param name="callback"></param>
+        </member>
+        <member name="M:PVPNetConnect.RiotObjects.Statistics.RawStat.#ctor(PVPNetConnect.TypedObject)">
+            <summary>
+            Create the Class with a TypedObject result
+            </summary>
+            <param name="result"></param>
+        </member>
+        <member name="F:PVPNetConnect.RiotObjects.Statistics.RawStat.callback">
+            <summary>
+            The callback member.
+            </summary>
+        </member>
+        <member name="M:PVPNetConnect.RiotObjects.Statistics.RawStat.DoCallback(PVPNetConnect.TypedObject)">
+            <summary>
+            The DOCallback method.
+            </summary>
+            <param name="result"></param>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Statistics.RawStat.StatType">
+            <summary>
+            The string that defines the stat type.
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Statistics.RawStat.Value">
+            <summary>
+            The value of the stat.
+            </summary>
+        </member>
+        <member name="T:PVPNetConnect.RiotObjects.Statistics.RawStat.Callback">
+            <summary>
+            Delegate method for Callback
+            </summary>
+            <param name="result"></param>
+        </member>
+        <member name="M:PVPNetConnect.RiotObjects.Statistics.FellowPlayerInfo.#ctor">
+            <summary>
+            Create an empty Class
+            </summary>
+        </member>
+        <member name="M:PVPNetConnect.RiotObjects.Statistics.FellowPlayerInfo.#ctor(PVPNetConnect.RiotObjects.Statistics.FellowPlayerInfo.Callback)">
+            <summary>
+            Create the Class with a callback.
+            </summary>
+            <param name="callback"></param>
+        </member>
+        <member name="M:PVPNetConnect.RiotObjects.Statistics.FellowPlayerInfo.#ctor(PVPNetConnect.TypedObject)">
+            <summary>
+            Create the Class with a TypedObject result
+            </summary>
+            <param name="result"></param>
+        </member>
+        <member name="F:PVPNetConnect.RiotObjects.Statistics.FellowPlayerInfo.callback">
+            <summary>
+            The callback member.
+            </summary>
+        </member>
+        <member name="M:PVPNetConnect.RiotObjects.Statistics.FellowPlayerInfo.DoCallback(PVPNetConnect.TypedObject)">
+            <summary>
+            The DOCallback method.
+            </summary>
+            <param name="result"></param>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Statistics.FellowPlayerInfo.ChampionID">
+            <summary>
+            The champion ID number.
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Statistics.FellowPlayerInfo.TeamID">
+            <summary>
+            The Team ID number (100 = blue, 200 = purple).
+            </summary>
+        </member>
+        <member name="P:PVPNetConnect.RiotObjects.Statistics.FellowPlayerInfo.SummonerID">
+            <summary>
+            The summoner ID number.
+            </summary>
+        </member>
+        <member name="T:PVPNetConnect.RiotObjects.Statistics.FellowPlayerInfo.Callback">
+            <summary>
+            Delegate method for Callback
+            </summary>
+            <param name="result"></param>
+        </member>
     </members>
 </doc>
