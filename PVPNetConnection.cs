@@ -1133,6 +1133,13 @@ namespace PVPNetConnect
             InvokeWithCallback("gameService", "retrieveInProgressSpectatorGameInfo", new object[] { summonerName }, cb);
         }
 
+        // TODO: Not working because return type is only an object array
+        public void RetrieveTopPlayedChampions(int accountID, string gameMode, TopPlayedChampions.Callback callback)
+        {
+            TopPlayedChampions cb = new TopPlayedChampions(callback);
+            InvokeWithCallback("gameService", "retrieveInProgressSpectatorGameInfo", new object[] { accountID, gameMode }, cb);
+        }
+
         //Chat Information Methods
         public void GetSummonerChatIdByName(string summonerName, UnclassedObject.Callback callback)
         {

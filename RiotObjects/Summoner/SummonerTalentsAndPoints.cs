@@ -9,22 +9,9 @@ namespace PVPNetConnect.RiotObjects.Summoner
     {
         #region Constructors and Callbacks
 
-        public SummonerTalentsAndPoints(Callback callback)
-        {
-            this.callback = callback;
-        }
-
         public SummonerTalentsAndPoints(TypedObject result)
         {
             base.SetFields<SummonerTalentsAndPoints>(this, result);
-        }
-
-        public delegate void Callback(SummonerTalentsAndPoints result);
-        private Callback callback;
-        public override void DoCallback(TypedObject result)
-        {
-            base.SetFields<SummonerTalentsAndPoints>(this, result);
-            callback(this);
         }
 
         #endregion

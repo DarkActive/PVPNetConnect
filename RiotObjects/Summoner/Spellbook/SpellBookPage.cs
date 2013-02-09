@@ -9,23 +9,9 @@ namespace PVPNetConnect.RiotObjects.Summoner
     {
         #region Constructors and Callbacks
 
-        public SpellBookPage(Callback callback)
-        {
-            this.callback = callback;
-        }
-
         public SpellBookPage(TypedObject result)
         {
             base.SetFields<SpellBookPage>(this, result);
-        }
-
-
-        public delegate void Callback(SpellBookPage result);
-        private Callback callback;
-        public override void DoCallback(TypedObject result)
-        {
-            base.SetFields<SpellBookPage>(this, result);
-            callback(this);
         }
 
         #endregion

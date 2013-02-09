@@ -56,7 +56,7 @@ namespace PVPNetConnect.RiotObjects
                }
                else if (type == typeof(DateTime))
                {
-                  value = Convert.ToDateTime(result[intern.Name]);
+                   value = result[intern.Name];
                }
                else if (type == typeof(TypedObject))
                {

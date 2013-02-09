@@ -9,22 +9,9 @@ namespace PVPNetConnect.RiotObjects.Summoner
     {
         #region Constructors and Callbacks
 
-        public SummonerGameModeSpells(Callback callback)
-        {
-            this.callback = callback;
-        }
-
         public SummonerGameModeSpells(TypedObject result)
         {
             base.SetFields<SummonerGameModeSpells>(this, result);
-        }
-
-        public delegate void Callback(SummonerGameModeSpells result);
-        private Callback callback;
-        public override void DoCallback(TypedObject result)
-        {
-            base.SetFields <SummonerGameModeSpells>(this, result);
-            callback(this);
         }
 
         #endregion

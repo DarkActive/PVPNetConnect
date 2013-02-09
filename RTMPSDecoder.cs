@@ -271,7 +271,7 @@ namespace PVPNetConnect
          if (inline)
          {
             long ms = (long)ReadDouble();
-            DateTime d = new DateTime(ms);
+            DateTime d = DateTime.MaxValue - TimeSpan.FromTicks(ms);
 
             objectReferences.Add(d);
 

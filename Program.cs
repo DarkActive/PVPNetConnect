@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Threading;
 
-using PVPNetConnect.Callbacks;
-
 namespace PVPNetConnect
 {
     class Program

@@ -9,22 +9,9 @@ namespace PVPNetConnect.RiotObjects.Statistics
     {
         #region Constructors and Callbacks
 
-        public AggregatedStat(Callback callback)
-        {
-            this.callback = callback;
-        }
-
         public AggregatedStat(TypedObject result)
         {
             base.SetFields<AggregatedStat>(this, result);
-        }
-
-        public delegate void Callback(AggregatedStat result);
-        private Callback callback;
-        public override void DoCallback(TypedObject result)
-        {
-            base.SetFields<AggregatedStat>(this, result);
-            callback(this);
         }
 
         #endregion

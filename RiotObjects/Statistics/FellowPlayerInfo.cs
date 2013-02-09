@@ -17,42 +17,12 @@ namespace PVPNetConnect.RiotObjects.Statistics
         }
 
         /// <summary>
-        /// Create the Class with a callback.
-        /// </summary>
-        /// <param name="callback"></param>
-        public FellowPlayerInfo(Callback callback)
-        {
-            this.callback = callback;
-        }
-
-        /// <summary>
         /// Create the Class with a TypedObject result
         /// </summary>
         /// <param name="result"></param>
         public FellowPlayerInfo(TypedObject result)
         {
             base.SetFields<FellowPlayerInfo>(this, result);
-        }
-
-        /// <summary>
-        /// Delegate method for Callback
-        /// </summary>
-        /// <param name="result"></param>
-        public delegate void Callback(FellowPlayerInfo result);
-
-        /// <summary>
-        /// The callback member.
-        /// </summary>
-        private Callback callback;
-
-        /// <summary>
-        /// The DOCallback method.
-        /// </summary>
-        /// <param name="result"></param>
-        public override void DoCallback(TypedObject result)
-        {
-            base.SetFields<FellowPlayerInfo>(this, result);
-            callback(this);
         }
 
         #endregion

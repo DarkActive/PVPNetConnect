@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace PVPNetConnect.Callbacks
+using PVPNetConnect.RiotObjects.Summoner;
+using PVPNetConnect.RiotObjects.Statistics;
+
+namespace PVPNetConnect.RiotObjects.Client
 {
    public class LoginDataPacket : RiotGamesObject
    {

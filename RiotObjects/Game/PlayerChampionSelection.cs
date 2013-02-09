@@ -12,22 +12,9 @@ namespace PVPNetConnect.RiotObjects.Game
     {
         #region Constructors and Callbacks
 
-        public PlayerChampionSelection(Callback callback)
-        {
-            this.callback = callback;
-        }
-
         public PlayerChampionSelection(TypedObject result)
         {
             base.SetFields<PlayerChampionSelection>(this, result);
-        }
-
-        public delegate void Callback(PlayerChampionSelection result);
-        private Callback callback;
-        public override void DoCallback(TypedObject result)
-        {
-            base.SetFields<PlayerChampionSelection>(this, result);
-            callback(this);
         }
 
         #endregion

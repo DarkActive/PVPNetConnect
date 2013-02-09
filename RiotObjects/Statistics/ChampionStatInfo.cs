@@ -9,22 +9,9 @@ namespace PVPNetConnect.RiotObjects.Statistics
     {
         #region Constructors and Callbacks
 
-        public ChampionStatInfo(Callback callback)
-        {
-            this.callback = callback;
-        }
-
         public ChampionStatInfo(TypedObject result)
         {
             base.SetFields<ChampionStatInfo>(this, result);
-        }
-
-        public delegate void Callback(ChampionStatInfo result);
-        private Callback callback;
-        public override void DoCallback(TypedObject result)
-        {
-            base.SetFields<ChampionStatInfo>(this, result);
-            callback(this);
         }
 
         #endregion

@@ -11,23 +11,9 @@ namespace PVPNetConnect.RiotObjects.Summoner
     {
         #region Constructors and Callbacks
 
-        public SlotEntry(Callback callback)
-        {
-            this.callback = callback;
-        }
-
         public SlotEntry(TypedObject result)
         {
             base.SetFields<SlotEntry>(this, result);
-        }
-
-
-        public delegate void Callback(SlotEntry result);
-        private Callback callback;
-        public override void DoCallback(TypedObject result)
-        {
-            base.SetFields<SlotEntry>(this, result);
-            callback(this);
         }
 
         #endregion
