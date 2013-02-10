@@ -1412,9 +1412,9 @@ namespace PVPNetConnect
         /// </summary>
         /// <param name="summonerIDs">The summoner IDs.</param>
         /// <param name="callback">The callback method.</param>
-        public void GetSummonerNames(object[] summonerIDs, UnclassedObject.Callback callback)
+        public void GetSummonerNames(object[] summonerIDs, SummonerNames.Callback callback)
         {
-            UnclassedObject cb = new UnclassedObject(callback);
+            SummonerNames cb = new SummonerNames(callback);
             InvokeWithCallback("summonerService", "getSummonerNames", new object[] { summonerIDs }, cb);
         }
 

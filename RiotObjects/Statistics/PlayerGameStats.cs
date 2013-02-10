@@ -112,7 +112,7 @@ namespace PVPNetConnect.RiotObjects.Statistics
         /// Summoner ID number of player.
         /// </summary>
         [InternalName("summonerId")]
-        public int SummonerId { get; set; }
+        public int SummonerID { get; set; }
 
         /// <summary>
         /// Player stats like kills, deaths, minions, etc...
@@ -190,7 +190,7 @@ namespace PVPNetConnect.RiotObjects.Statistics
         /// ID number of the game.
         /// </summary>
         [InternalName("gameId")]
-        public int GameId { get; set; }
+        public int GameID { get; set; }
 
         /// <summary>
         /// Time in Queue in SECONDS.

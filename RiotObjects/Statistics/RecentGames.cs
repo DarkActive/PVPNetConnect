@@ -59,7 +59,7 @@ namespace PVPNetConnect.RiotObjects.Statistics
         /// The account ID of the user whose recent games list is.
         /// </summary>
         [InternalName("userId")]
-        public string AccountID { get; set; }
+        public int AccountID { get; set; }
 
         /// <summary>
         /// List of the recent games and their stats.

@@ -59,7 +59,7 @@ namespace PVPNetConnect.RiotObjects.Statistics
         /// List of all the player stat summaries (summaries of Solo_ranked, normal, etc)
         /// </summary>
         [InternalName("playerStatSummaries")]
-        public List<PlayerStatSummaries> PlayerStatSummaries { get; set; }
+        public PlayerStatSummaries PlayerStatSummaries { get; set; }
 
         /// <summary>
         /// The leaver penalty stats.

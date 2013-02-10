@@ -59,7 +59,7 @@ namespace PVPNetConnect.RiotObjects.Game
         /// ID of game.
         /// </summary>
         [InternalName("id")]
-        public int Id { get; set; }
+        public int ID { get; set; }
 
         /// <summary>
         /// Game name.
