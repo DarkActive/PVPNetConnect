@@ -24,6 +24,7 @@ using System.Web.Script.Serialization;
 using PVPNetConnect.Assets;
 using PVPNetConnect.RiotObjects;
 using PVPNetConnect.RiotObjects.Summoner;
+using PVPNetConnect.RiotObjects.Leagues;
 using PVPNetConnect.RiotObjects.Statistics;
 using PVPNetConnect.RiotObjects.Client;
 using PVPNetConnect.RiotObjects.Game;
@@ -1339,6 +1340,38 @@ namespace PVPNetConnect
         {
             LoginDataPacket cb = new LoginDataPacket(callback);
             InvokeWithCallback("clientFacadeService", "getLoginDataPacketForUser", new object[] { }, cb);
+        }
+
+        /// <summary>
+        /// Gets all the leagues for logged in summoner.
+        /// </summary>
+        /// <param name="callback">The callback method.</param>
+        public void GetAllMyLeagues(SummonerLeagues.Callback callback)
+        {
+            SummonerLeagues cb = new SummonerLeagues(callback);
+            InvokeWithCallback("leaguesServiceProxy", "getAllMyLeagues", new object[] { }, cb);
+        }
+
+        /// <summary>
+        /// Get all the leagues for specified summoner ID.
+        /// </summary>
+        /// <param name="summonerID">The summoner ID.</param>
+        /// <param name="callback">The callback method.</param>
+        public void GetAllLeaguesForPlayer(int summonerID, SummonerLeagues.Callback callback)
+        {
+            SummonerLeagues cb = new SummonerLeagues(callback);
+            InvokeWithCallback("leaguesServiceProxy", "getAllLeaguesForPlayer", new object[] { summonerID }, cb);
+        }
+
+        /// <summary>
+        /// Get the challenger league for specified queue type.
+        /// </summary>
+        /// <param name="queueType">The queue type enum.</param>
+        /// <param name="callback">The callback method.</param>
+        public void GetChallengerLeague(QueueTypes queueType, League.Callback callback)
+        {
+            League cb = new League(callback);
+            InvokeWithCallback("leaguesServiceProxy", "getChallengerLeague", new object[] { StringEnum.GetStringValue(queueType) }, cb);
         }
 
         /// <summary>

@@ -71,10 +71,42 @@ namespace PVPNetConnect.Assets
         [StringValue("RANKED_GAME")]
         RANKED_GAME = 1,
         /// <summary>
+        /// Matched game enum.
+        /// </summary>
+        [StringValue("MATCHED_GAME")]
+        MATCHED_GAME = 2,
+        /// <summary>
         /// Practice game enum.
         /// </summary>
         [StringValue("PRACTICE_GAME")]
         PRACTICE_GAME = 3
+    }
+
+    /// <summary>
+    /// Queue types Enumeartor.
+    /// </summary>
+    public enum QueueTypes
+    {
+        /// <summary>
+        /// Normal 5x5 queue enum.
+        /// </summary>
+        [StringValue("NORMAL_5x5")]
+        NORMAL_5x5 = 0,
+        /// <summary>
+        /// Ranked Solo 5x5 queue enum.
+        /// </summary>
+        [StringValue("RANKED_SOLO_5x5")]
+        RANKED_SOLO_5x5 = 1,
+        /// <summary>
+        /// Ranked team 5x5 queue enum.
+        /// </summary>
+        [StringValue("RANKED_TEAM_5x5")]
+        RANKED_TEAM_5x5 = 2,
+        /// <summary>
+        /// Ranked team 3x3 queue enum.
+        /// </summary>
+        [StringValue("RANKED_TEAM_3x3")]
+        RANKED_TEAM_3x3 = 3
     }
 
     /// <summary>
