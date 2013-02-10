@@ -5,10 +5,17 @@ using System.Text;
 
 namespace PVPNetConnect.RiotObjects.Summoner
 {
+    /// <summary>
+    /// The class that defines summoner game mode spells information.
+    /// </summary>
     public class SummonerGameModeSpells : RiotGamesObject
     {
         #region Constructors and Callbacks
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SummonerGameModeSpells"/> class.
+        /// </summary>
+        /// <param name="result">The result.</param>
         public SummonerGameModeSpells(TypedObject result)
         {
             base.SetFields<SummonerGameModeSpells>(this, result);

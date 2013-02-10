@@ -12,6 +12,10 @@ namespace PVPNetConnect.RiotObjects.Summoner
     {
         #region Constructors and Callbacks
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Summoner"/> class.
+        /// </summary>
+        /// <param name="result">The result.</param>
         public Summoner(TypedObject result)
         {
             base.SetFields<Summoner>(this, result);
@@ -63,30 +67,57 @@ namespace PVPNetConnect.RiotObjects.Summoner
         [InternalName("profileIconId")]
         public int ProfileIconId { get; set; }
 
+        /// <summary>
+        /// The help flag.
+        /// </summary>
         [InternalName("helpFlag")]
         public bool HelpFlag { get; set; }
 
+        /// <summary>
+        /// THe display elo questionare boolean
+        /// </summary>
         [InternalName("displayEloQuestionaire")]
         public bool DisplayEloQuestionaire { get; set; }
 
+        /// <summary>
+        /// The last game date.
+        /// </summary>
         [InternalName("lastGameDate")]
         public DateTime LastGameDate { get; set; }
 
+        /// <summary>
+        /// THe advanced tutorial flag.
+        /// </summary>
         [InternalName("advancedTutorialFlag")]
         public bool AdvancedTutorialFlag { get; set; }
 
+        /// <summary>
+        /// THe revision date.
+        /// </summary>
         [InternalName("revisionDate")]
         public DateTime RevisionDate { get; set; }
 
+        /// <summary>
+        /// The revision id.
+        /// </summary>
         [InternalName("revisionId")]
         public int RevisionId { get; set; }
 
+        /// <summary>
+        /// THe name change flag.
+        /// </summary>
         [InternalName("nameChangeFlag")]
         public bool NameChangeFlag { get; set; }
 
+        /// <summary>
+        /// The tutorial flag.
+        /// </summary>
         [InternalName("tutorialFlag")]
         public bool TutorialFlag { get; set; }
 
+        /// <summary>
+        /// The social network user ids.
+        /// </summary>
         [InternalName("socialNetworkUserIds")]
         public object SocialNetworkUserIds { get; set; }
 

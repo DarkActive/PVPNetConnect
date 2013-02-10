@@ -5,10 +5,17 @@ using System.Text;
 
 namespace PVPNetConnect.RiotObjects.Statistics
 {
+    /// <summary>
+    /// The class that defines leaver penalty stats.
+    /// </summary>
     public class LeaverPenaltyStats : RiotGamesObject
     {
         #region Constructors and Callbacks
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LeaverPenaltyStats"/> class.
+        /// </summary>
+        /// <param name="result">The result.</param>
         public LeaverPenaltyStats(TypedObject result)
         {
             base.SetFields<LeaverPenaltyStats>(this, result);

@@ -1,4 +1,4 @@
-﻿/**
+﻿/*
  * A very basic RTMPS client
  *
  * @author Gabriel Van Eyck
@@ -17,11 +17,22 @@ using System.Text;
 
 namespace PVPNetConnect
 {
-   static class RTMPSEncoder
+    /// <summary>
+    /// The RTMPSEncoder class that encodes RTMPS packets
+    /// </summary>
+   public static class RTMPSEncoder
    {
 
+       /// <summary>
+       /// The start time
+       /// </summary>
       public static long startTime = (long)DateTime.Now.TimeOfDay.TotalMilliseconds;
 
+      /// <summary>
+      /// Adds the headers.
+      /// </summary>
+      /// <param name="data">The data.</param>
+      /// <returns></returns>
       public static byte[] AddHeaders(byte[] data)
       {
          List<byte> result = new List<byte>();
@@ -64,6 +75,11 @@ namespace PVPNetConnect
          return ret;
       }
 
+      /// <summary>
+      /// Encodes the connect.
+      /// </summary>
+      /// <param name="paramaters">The paramaters.</param>
+      /// <returns></returns>
       public static byte[] EncodeConnect(Dictionary<string, object> paramaters)
       {
          List<Byte> result = new List<Byte>();
@@ -111,6 +127,12 @@ namespace PVPNetConnect
          return ret;
       }
 
+      /// <summary>
+      /// Encodes the invoke.
+      /// </summary>
+      /// <param name="id">The id.</param>
+      /// <param name="data">The data.</param>
+      /// <returns></returns>
       public static byte[] EncodeInvoke(int id, object data)
       {
          List<Byte> result = new List<Byte>();
@@ -132,6 +154,11 @@ namespace PVPNetConnect
          return ret;
       }
 
+      /// <summary>
+      /// Encodes the specified obj.
+      /// </summary>
+      /// <param name="obj">The obj.</param>
+      /// <returns></returns>
       public static byte[] Encode(object obj)
       {
          List<byte> result = new List<byte>();
@@ -144,6 +171,12 @@ namespace PVPNetConnect
          return ret;
       }
 
+      /// <summary>
+      /// Encodes the specified ret.
+      /// </summary>
+      /// <param name="ret">The ret.</param>
+      /// <param name="obj">The obj.</param>
+      /// <exception cref="System.Exception">Unexpected object type:  + obj.GetType().FullName</exception>
       public static void Encode(List<byte> ret, object obj)
       {
          if (obj == null)
@@ -212,6 +245,11 @@ namespace PVPNetConnect
          }
       }
 
+      /// <summary>
+      /// Writes the int.
+      /// </summary>
+      /// <param name="ret">The ret.</param>
+      /// <param name="val">The val.</param>
       private static void WriteInt(List<Byte> ret, int val)
       {
          if (val < 0 || val >= 0x200000)
@@ -235,6 +273,11 @@ namespace PVPNetConnect
          }
       }
 
+      /// <summary>
+      /// Writes the double.
+      /// </summary>
+      /// <param name="ret">The ret.</param>
+      /// <param name="val">The val.</param>
       private static void WriteDouble(List<byte> ret, double val)
       {
          if (Double.IsNaN(val))
@@ -257,6 +300,12 @@ namespace PVPNetConnect
          }
       }
 
+      /// <summary>
+      /// Writes the string.
+      /// </summary>
+      /// <param name="ret">The ret.</param>
+      /// <param name="val">The val.</param>
+      /// <exception cref="System.Exception">Unable to encode string as UTF-8:  + val + '\n' + e.Message</exception>
       private static void WriteString(List<byte> ret, string val)
       {
          byte[] temp = null;
@@ -276,12 +325,22 @@ namespace PVPNetConnect
             ret.Add(b);
       }
 
+      /// <summary>
+      /// Writes the date.
+      /// </summary>
+      /// <param name="ret">The ret.</param>
+      /// <param name="val">The val.</param>
       private static void WriteDate(List<Byte> ret, DateTime val)
       {
          ret.Add((byte)0x01);
          WriteDouble(ret, (double)val.TimeOfDay.TotalMilliseconds);
       }
 
+      /// <summary>
+      /// Writes the array.
+      /// </summary>
+      /// <param name="ret">The ret.</param>
+      /// <param name="val">The val.</param>
       private static void WriteArray(List<byte> ret, object[] val)
       {
          WriteInt(ret, (val.Length << 1) | 1);
@@ -290,6 +349,11 @@ namespace PVPNetConnect
             Encode(ret, obj);
       }
 
+      /// <summary>
+      /// Writes the associative array.
+      /// </summary>
+      /// <param name="ret">The ret.</param>
+      /// <param name="val">The val.</param>
       private static void WriteAssociativeArray(List<Byte> ret, Dictionary<string, object> val)
       {
          ret.Add((byte)0x01);
@@ -301,6 +365,11 @@ namespace PVPNetConnect
          ret.Add((byte)0x01);
       }
 
+      /// <summary>
+      /// Writes the object.
+      /// </summary>
+      /// <param name="ret">The ret.</param>
+      /// <param name="val">The val.</param>
       private static void WriteObject(List<byte> ret, TypedObject val)
       {
          if (val.type == null || val.type.Equals(""))
@@ -339,11 +408,22 @@ namespace PVPNetConnect
          }
       }
 
+      /// <summary>
+      /// Writes the byte array.
+      /// </summary>
+      /// <param name="ret">The ret.</param>
+      /// <param name="val">The val.</param>
+      /// <exception cref="System.NotImplementedException">Encoding byte arrays is not implemented</exception>
       private static void WriteByteArray(List<byte> ret, byte[] val)
       {
          throw new NotImplementedException("Encoding byte arrays is not implemented");
       }
 
+      /// <summary>
+      /// Writes the int AM f0.
+      /// </summary>
+      /// <param name="ret">The ret.</param>
+      /// <param name="val">The val.</param>
       private static void WriteIntAMF0(List<byte> ret, int val)
       {
          ret.Add((byte)0x00);
@@ -356,6 +436,12 @@ namespace PVPNetConnect
             //ret.Add(b);
       }
 
+      /// <summary>
+      /// Writes the string AM f0.
+      /// </summary>
+      /// <param name="ret">The ret.</param>
+      /// <param name="val">The val.</param>
+      /// <exception cref="System.Exception">Unable to encode string as UTF-8:  + val + '\n' + e.Message</exception>
       private static void WriteStringAMF0(List<byte> ret, string val)
       {
          byte[] temp = null;
@@ -378,6 +464,10 @@ namespace PVPNetConnect
             ret.Add(b);
       }
 
+      /// <summary>
+      /// Randoms the UID.
+      /// </summary>
+      /// <returns></returns>
       public static string RandomUID()
       {
          Random rand = new Random();

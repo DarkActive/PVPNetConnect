@@ -5,10 +5,17 @@ using System.Text;
 
 namespace PVPNetConnect.RiotObjects.Statistics
 {
+    /// <summary>
+    /// The class that defines player game stats.
+    /// </summary>
     public class PlayerGameStats : RiotGamesObject
     {
         #region Constructors and Callbacks
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PlayerGameStats"/> class.
+        /// </summary>
+        /// <param name="result">The result.</param>
         public PlayerGameStats(TypedObject result)
         {
             base.SetFields<PlayerGameStats>(this, result);

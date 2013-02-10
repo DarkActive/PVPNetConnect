@@ -5,10 +5,17 @@ using System.Text;
 
 namespace PVPNetConnect.RiotObjects.Statistics
 {
+    /// <summary>
+    /// Class that defines an aggregated stat and its information.
+    /// </summary>
     public class AggregatedStat : RiotGamesObject
     {
         #region Constructors and Callbacks
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AggregatedStat"/> class.
+        /// </summary>
+        /// <param name="result">The result.</param>
         public AggregatedStat(TypedObject result)
         {
             base.SetFields<AggregatedStat>(this, result);

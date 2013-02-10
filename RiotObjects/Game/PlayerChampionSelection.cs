@@ -6,12 +6,16 @@ using System.Text;
 namespace PVPNetConnect.RiotObjects.Game
 {
     /// <summary>
-    /// Class with in progress game and spectator info.
+    /// Class with Player champion select information.
     /// </summary>
     public class PlayerChampionSelection : RiotGamesObject
     {
         #region Constructors and Callbacks
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PlayerChampionSelection"/> class.
+        /// </summary>
+        /// <param name="result">The result.</param>
         public PlayerChampionSelection(TypedObject result)
         {
             base.SetFields<PlayerChampionSelection>(this, result);

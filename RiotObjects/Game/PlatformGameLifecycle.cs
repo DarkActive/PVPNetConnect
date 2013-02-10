@@ -12,18 +12,39 @@ namespace PVPNetConnect.RiotObjects.Game
     {
         #region Constructors and Callbacks
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PlatformGameLifecycle"/> class.
+        /// </summary>
+        /// <param name="callback">The callback.</param>
         public PlatformGameLifecycle(Callback callback)
         {
             this.callback = callback;
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PlatformGameLifecycle"/> class.
+        /// </summary>
+        /// <param name="result">The result.</param>
         public PlatformGameLifecycle(TypedObject result)
         {
             base.SetFields<PlatformGameLifecycle>(this, result);
         }
 
+        /// <summary>
+        /// The delegate for the callback method.
+        /// </summary>
+        /// <param name="result">The result.</param>
         public delegate void Callback(PlatformGameLifecycle result);
+
+        /// <summary>
+        /// The callback method.
+        /// </summary>
         private Callback callback;
+
+        /// <summary>
+        /// The DoCallback method.
+        /// </summary>
+        /// <param name="result">The result.</param>
         public override void DoCallback(TypedObject result)
         {
             if (result == null)

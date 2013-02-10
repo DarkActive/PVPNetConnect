@@ -5,10 +5,17 @@ using System.Text;
 
 namespace PVPNetConnect.RiotObjects.Catalog
 {
+    /// <summary>
+    /// Class that defines a specific Rune and its information.
+    /// </summary>
     public class Rune : RiotGamesObject
     {
         #region Constructors and Callbacks
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Rune"/> class.
+        /// </summary>
+        /// <param name="result">The result.</param>
         public Rune(TypedObject result)
         {
             base.SetFields<Rune>(this, result);

@@ -5,10 +5,17 @@ using System.Text;
 
 namespace PVPNetConnect.RiotObjects.Summoner
 {
+    /// <summary>
+    /// THe class that defines summoner level and points information.
+    /// </summary>
     public class SummonerLevelAndPoints : RiotGamesObject
     {
         #region Constructors and Callbacks
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SummonerLevelAndPoints"/> class.
+        /// </summary>
+        /// <param name="result">The result.</param>
         public SummonerLevelAndPoints(TypedObject result)
         {
             base.SetFields<SummonerLevelAndPoints>(this, result);

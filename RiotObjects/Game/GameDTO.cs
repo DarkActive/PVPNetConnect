@@ -6,24 +6,45 @@ using System.Text;
 namespace PVPNetConnect.RiotObjects.Game
 {
     /// <summary>
-    /// Class with in progress game and spectator info.
+    /// Class with specific information about a game (inProgress, preGame, and endGame)
     /// </summary>
     public class GameDTO : RiotGamesObject
     {
         #region Constructors and Callbacks
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GameDTO"/> class.
+        /// </summary>
+        /// <param name="callback">The callback method.</param>
         public GameDTO(Callback callback)
         {
             this.callback = callback;
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GameDTO"/> class.
+        /// </summary>
+        /// <param name="result">The result.</param>
         public GameDTO(TypedObject result)
         {
             base.SetFields<GameDTO>(this, result);
         }
 
+        /// <summary>
+        /// Delegate for the callback method.
+        /// </summary>
+        /// <param name="result">The result.</param>
         public delegate void Callback(GameDTO result);
+
+        /// <summary>
+        /// The callback method.
+        /// </summary>
         private Callback callback;
+
+        /// <summary>
+        /// The DoCallback method.
+        /// </summary>
+        /// <param name="result">The result.</param>
         public override void DoCallback(TypedObject result)
         {
             base.SetFields<GameDTO>(this, result);

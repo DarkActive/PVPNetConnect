@@ -7,10 +7,17 @@ using PVPNetConnect.RiotObjects.Catalog;
 
 namespace PVPNetConnect.RiotObjects.Summoner
 {
+    /// <summary>
+    /// The class that defines a slot entry.
+    /// </summary>
     public class SlotEntry : RiotGamesObject
     {
         #region Constructors and Callbacks
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SlotEntry"/> class.
+        /// </summary>
+        /// <param name="result">The result.</param>
         public SlotEntry(TypedObject result)
         {
             base.SetFields<SlotEntry>(this, result);

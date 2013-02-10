@@ -5,10 +5,17 @@ using System.Text;
 
 namespace PVPNetConnect.RiotObjects.Summoner
 {
+    /// <summary>
+    /// The class that defines summoner default spells information.
+    /// </summary>
     public class SummonerDefaultSpells : RiotGamesObject
     {
         #region Constructors and Callbacks
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SummonerDefaultSpells"/> class.
+        /// </summary>
+        /// <param name="result">The result.</param>
         public SummonerDefaultSpells(TypedObject result)
         {
             base.SetFields<SummonerDefaultSpells>(this, result);

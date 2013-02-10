@@ -5,10 +5,17 @@ using System.Text;
 
 namespace PVPNetConnect.RiotObjects.Catalog
 {
+    /// <summary>
+    /// Class that defines the item effect in game.
+    /// </summary>
     public class ItemEffect : RiotGamesObject
     {
         #region Constructors and Callbacks
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ItemEffect"/> class.
+        /// </summary>
+        /// <param name="result">The result.</param>
         public ItemEffect(TypedObject result)
         {
             base.SetFields<ItemEffect>(this, result);

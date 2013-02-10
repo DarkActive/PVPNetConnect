@@ -5,10 +5,17 @@ using System.Text;
 
 namespace PVPNetConnect.RiotObjects.Summoner
 {
+    /// <summary>
+    /// The class that defines talent.
+    /// </summary>
     public class Talent : RiotGamesObject
     {
         #region Constructors and Callbacks
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Talent"/> class.
+        /// </summary>
+        /// <param name="result">The result.</param>
         public Talent(TypedObject result)
         {
             base.SetFields<Talent>(this, result);

@@ -5,10 +5,17 @@ using System.Text;
 
 namespace PVPNetConnect.RiotObjects.Catalog
 {
+    /// <summary>
+    /// Class that defines Rune/Mastery effects in game.
+    /// </summary>
     public class Effect : RiotGamesObject
     {
         #region Constructors and Callbacks
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Effect"/> class.
+        /// </summary>
+        /// <param name="result">The result.</param>
         public Effect(TypedObject result)
         {
             base.SetFields<Effect>(this, result);

@@ -1,4 +1,4 @@
-﻿/**
+﻿/*
  * A very basic RTMPS client
  *
  * @author Gabriel Van Eyck
@@ -17,18 +17,39 @@ using System.IO;
 using System.Web.Script.Serialization;
 namespace PVPNetConnect
 {
+    /// <summary>
+    /// RTMPS decoder class that decodes RTMPS messages
+    /// </summary>
    public class RTMPSDecoder
    {
       // Stores the data to be consumed while decoding
+       /// <summary>
+       /// The data buffer
+       /// </summary>
       private static byte[] dataBuffer;
+      /// <summary>
+      /// The data pos
+      /// </summary>
       private static int dataPos;
 
       // Lists of references and class definitions seen so far
+      /// <summary>
+      /// The string references
+      /// </summary>
       private static List<string> stringReferences = new List<string>();
+      /// <summary>
+      /// The object references
+      /// </summary>
       private static List<object> objectReferences = new List<object>();
+      /// <summary>
+      /// The class definitions
+      /// </summary>
       private static List<ClassDefinition> classDefinitions = new List<ClassDefinition>();
 
 
+      /// <summary>
+      /// Resets this instance.
+      /// </summary>
       private static void Reset()
       {
          stringReferences.Clear();
@@ -36,6 +57,16 @@ namespace PVPNetConnect
          classDefinitions.Clear();
       }
 
+      /// <summary>
+      /// Decodes the connect.
+      /// </summary>
+      /// <param name="data">The data.</param>
+      /// <returns></returns>
+      /// <exception cref="System.Exception">
+      /// There is other data in the buffer!
+      /// or
+      /// Did not consume entire buffer:  + dataPos +  of  + dataBuffer.Length
+      /// </exception>
       public static TypedObject DecodeConnect(byte[] data)
       {
          Reset();
@@ -62,6 +93,12 @@ namespace PVPNetConnect
          return result;
       }
 
+      /// <summary>
+      /// Decodes the invoke.
+      /// </summary>
+      /// <param name="data">The data.</param>
+      /// <returns></returns>
+      /// <exception cref="System.Exception">Did not consume entire buffer:  + dataPos +  of  + dataBuffer.Length</exception>
       public static TypedObject DecodeInvoke(byte[] data)
       {
          Reset();
@@ -87,6 +124,12 @@ namespace PVPNetConnect
          return result;
       }
 
+      /// <summary>
+      /// Decodes the specified data.
+      /// </summary>
+      /// <param name="data">The data.</param>
+      /// <returns></returns>
+      /// <exception cref="System.Exception">Did not consume entire buffer:  + dataPos +  of  + dataBuffer.Length</exception>
       public static object Decode(byte[] data)
       {
          dataBuffer = data;
@@ -100,6 +143,15 @@ namespace PVPNetConnect
          return result;
       }
 
+      /// <summary>
+      /// Decodes this instance.
+      /// </summary>
+      /// <returns></returns>
+      /// <exception cref="System.Exception">
+      /// Undefined data type
+      /// or
+      /// Unexpected AMF3 data type:  + type
+      /// </exception>
       private static object Decode()
       {
          byte type = ReadByte();
@@ -148,6 +200,10 @@ namespace PVPNetConnect
          throw new Exception("Unexpected AMF3 data type: " + type);
       }
 
+      /// <summary>
+      /// Reads the byte.
+      /// </summary>
+      /// <returns></returns>
       private static byte ReadByte()
       {
          byte ret = dataBuffer[dataPos];
@@ -155,6 +211,10 @@ namespace PVPNetConnect
          return ret;
       }
 
+      /// <summary>
+      /// Reads the byte as int.
+      /// </summary>
+      /// <returns></returns>
       private static int ReadByteAsInt()
       {
          int ret = ReadByte();
@@ -163,6 +223,11 @@ namespace PVPNetConnect
          return ret;
       }
 
+      /// <summary>
+      /// Reads the bytes.
+      /// </summary>
+      /// <param name="length">The length.</param>
+      /// <returns></returns>
       private static byte[] ReadBytes(int length)
       {
          byte[] ret = new byte[length];
@@ -174,6 +239,10 @@ namespace PVPNetConnect
          return ret;
       }
 
+      /// <summary>
+      /// Reads the int.
+      /// </summary>
+      /// <returns></returns>
       private static int ReadInt()
       {
          int ret = ReadByteAsInt();
@@ -214,6 +283,10 @@ namespace PVPNetConnect
          return r;
       }
 
+      /// <summary>
+      /// Reads the double.
+      /// </summary>
+      /// <returns></returns>
       private static double ReadDouble()
       {
          long value = 0;
@@ -223,6 +296,11 @@ namespace PVPNetConnect
          return BitConverter.Int64BitsToDouble(value);
       }
 
+      /// <summary>
+      /// Reads the string.
+      /// </summary>
+      /// <returns></returns>
+      /// <exception cref="System.Exception">Error parsing AMF3 string from  + data + '\n' + e.Message</exception>
       private static string ReadString()
       {
          int handle = ReadInt();
@@ -257,11 +335,20 @@ namespace PVPNetConnect
          }
       }
 
+      /// <summary>
+      /// Reads the XML.
+      /// </summary>
+      /// <returns></returns>
+      /// <exception cref="System.NotImplementedException">Reading of XML is not implemented</exception>
       private static string ReadXML()
       {
          throw new NotImplementedException("Reading of XML is not implemented");
       }
 
+      /// <summary>
+      /// Reads the date.
+      /// </summary>
+      /// <returns></returns>
       private static DateTime ReadDate()
       {
          int handle = ReadInt();
@@ -284,6 +371,11 @@ namespace PVPNetConnect
          }
       }
 
+      /// <summary>
+      /// Reads the array.
+      /// </summary>
+      /// <returns></returns>
+      /// <exception cref="System.NotImplementedException">Associative arrays are not supported</exception>
       private static object[] ReadArray()
       {
          int handle = ReadInt();
@@ -310,6 +402,11 @@ namespace PVPNetConnect
          }
       }
 
+      /// <summary>
+      /// Reads the list.
+      /// </summary>
+      /// <returns></returns>
+      /// <exception cref="System.NotImplementedException">Associative arrays are not supported</exception>
       private static List<object> ReadList()
       {
           int handle = ReadInt();
@@ -336,6 +433,11 @@ namespace PVPNetConnect
           }
       }
 
+      /// <summary>
+      /// Reads the object.
+      /// </summary>
+      /// <returns></returns>
+      /// <exception cref="System.NotImplementedException">Externalizable not handled for  + cd.type</exception>
       private static object ReadObject()
       {
          int handle = ReadInt();
@@ -435,11 +537,20 @@ namespace PVPNetConnect
          }
       }
 
+      /// <summary>
+      /// Reads the XML string.
+      /// </summary>
+      /// <returns></returns>
+      /// <exception cref="System.NotImplementedException">Reading of XML strings is not implemented</exception>
       private static string ReadXMLString()
       {
          throw new NotImplementedException("Reading of XML strings is not implemented");
       }
 
+      /// <summary>
+      /// Reads the byte array.
+      /// </summary>
+      /// <returns></returns>
       private static byte[] ReadByteArray()
       {
          int handle = ReadInt();
@@ -458,6 +569,10 @@ namespace PVPNetConnect
          }
       }
 
+      /// <summary>
+      /// Reads the DSA.
+      /// </summary>
+      /// <returns></returns>
       private static TypedObject ReadDSA()
       {
          TypedObject ret = new TypedObject("DSA");
@@ -534,6 +649,10 @@ namespace PVPNetConnect
          return ret;
       }
 
+      /// <summary>
+      /// Reads the DSK.
+      /// </summary>
+      /// <returns></returns>
       private static TypedObject ReadDSK()
       {
          // DSK is just a DSA + extra set of flags/objects
@@ -547,6 +666,10 @@ namespace PVPNetConnect
          return ret;
       }
 
+      /// <summary>
+      /// Reads the flags.
+      /// </summary>
+      /// <returns></returns>
       private static List<int> ReadFlags()
       {
          List<int> flags = new List<int>();
@@ -560,6 +683,11 @@ namespace PVPNetConnect
          return flags;
       }
 
+      /// <summary>
+      /// Reads the remaining.
+      /// </summary>
+      /// <param name="flag">The flag.</param>
+      /// <param name="bits">The bits.</param>
       private static void ReadRemaining(int flag, int bits)
       {
          // For forwards compatibility, read in any other flagged objects to
@@ -574,6 +702,11 @@ namespace PVPNetConnect
          }
       }
 
+      /// <summary>
+      /// Bytes the array to ID.
+      /// </summary>
+      /// <param name="data">The data.</param>
+      /// <returns></returns>
       private static string ByteArrayToID(byte[] data)
       {
          StringBuilder ret = new StringBuilder();
@@ -587,6 +720,11 @@ namespace PVPNetConnect
          return ret.ToString();
       }
 
+      /// <summary>
+      /// Decodes the AM f0.
+      /// </summary>
+      /// <returns></returns>
+      /// <exception cref="System.NotImplementedException">AMF0 type not supported:  + type</exception>
       private static object DecodeAMF0()
       {
          int type = ReadByte();
@@ -611,6 +749,11 @@ namespace PVPNetConnect
          throw new NotImplementedException("AMF0 type not supported: " + type);
       }
 
+      /// <summary>
+      /// Reads the string AM f0.
+      /// </summary>
+      /// <returns></returns>
+      /// <exception cref="System.Exception">Error parsing AMF0 string from  + data + '\n' + e.Message</exception>
       private static string ReadStringAMF0()
       {
          int length = (ReadByteAsInt() << 8) + ReadByteAsInt();
@@ -634,11 +777,20 @@ namespace PVPNetConnect
          return str;
       }
 
+      /// <summary>
+      /// Reads the int AM f0.
+      /// </summary>
+      /// <returns></returns>
       private static int ReadIntAMF0()
       {
          return (int)ReadDouble();
       }
 
+      /// <summary>
+      /// Reads the object AM f0.
+      /// </summary>
+      /// <returns></returns>
+      /// <exception cref="System.NotImplementedException">AMF0 type not supported:  + b</exception>
       private static TypedObject ReadObjectAMF0()
       {
          TypedObject body = new TypedObject("Body");

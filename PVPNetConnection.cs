@@ -1,13 +1,13 @@
-﻿/**
+﻿/*
  * A very basic RTMPS client
  *
  * @author Gabriel Van Eyck
  */
-///////////////////////////////////////////////////////////////////////////////// 
+/*///////////////////////////////////////////////////////////////////////////////// 
 //
 //Ported to C# by Ryan A. LaSarre
 //
-/////////////////////////////////////////////////////////////////////////////////
+/*/////////////////////////////////////////////////////////////////////////////////
 
 using System;
 using System.Collections.Generic;
@@ -30,71 +30,199 @@ using PVPNetConnect.RiotObjects.Game;
 
 namespace PVPNetConnect
 {
+    /// <summary>
+    /// PVPNetConnection class, main class used to connect to Riot Servers and perform calls and receive data.
+    /// </summary>
     public class PVPNetConnection
     {
         #region Member Declarations
 
-        //RTMPS Connection Info
+        /// <summary>
+        /// The is connected
+        /// </summary>
         private bool isConnected = false;
+        /// <summary>
+        /// The client
+        /// </summary>
         private TcpClient client;
+        /// <summary>
+        /// The SSL stream
+        /// </summary>
         private SslStream sslStream;
+        /// <summary>
+        /// The ip address
+        /// </summary>
         private string ipAddress;
+        /// <summary>
+        /// The auth token
+        /// </summary>
         private string authToken;
+        /// <summary>
+        /// The account ID
+        /// </summary>
         private int accountID;
+        /// <summary>
+        /// The session token
+        /// </summary>
         private string sessionToken;
+        /// <summary>
+        /// The DS id
+        /// </summary>
         private string DSId;
 
         //Initial Login Information
+        /// <summary>
+        /// The user
+        /// </summary>
         private string user;
+        /// <summary>
+        /// The password
+        /// </summary>
         private string password;
+        /// <summary>
+        /// The server
+        /// </summary>
         private string server;
+        /// <summary>
+        /// The login queue
+        /// </summary>
         private string loginQueue;
+        /// <summary>
+        /// The locale
+        /// </summary>
         private string locale;
+        /// <summary>
+        /// The client version
+        /// </summary>
         private string clientVersion;
 
         /** Garena information */
+        /// <summary>
+        /// The use garena
+        /// </summary>
         private bool useGarena = false;
+        /// <summary>
+        /// The garena token
+        /// </summary>
         private string garenaToken;
+        /// <summary>
+        /// The user ID
+        /// </summary>
         private string userID;
 
 
         //Invoke Variables
+        /// <summary>
+        /// The rand
+        /// </summary>
         private Random rand = new Random();
+        /// <summary>
+        /// The serializer
+        /// </summary>
         private JavaScriptSerializer serializer = new JavaScriptSerializer();
 
+        /// <summary>
+        /// The invoke ID
+        /// </summary>
         private int invokeID = 2;
 
+        /// <summary>
+        /// The pending invokes
+        /// </summary>
         private List<int> pendingInvokes = new List<int>();
+        /// <summary>
+        /// The results
+        /// </summary>
         private Dictionary<int, TypedObject> results = new Dictionary<int, TypedObject>();
+        /// <summary>
+        /// The callbacks
+        /// </summary>
         private Dictionary<int, RiotGamesObject> callbacks = new Dictionary<int, RiotGamesObject>();
+        /// <summary>
+        /// The decode thread
+        /// </summary>
         private Thread decodeThread;
 
+        /// <summary>
+        /// The heartbeat count
+        /// </summary>
         private int heartbeatCount = 1;
+        /// <summary>
+        /// The heartbeat thread
+        /// </summary>
         private Thread heartbeatThread;
 
         #endregion
 
         #region Event Handlers
 
+        /// <summary>
+        /// Handler to call when [on connect].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         public delegate void OnConnectHandler(object sender, EventArgs e);
+        /// <summary>
+        /// Occurs when [on connect].
+        /// </summary>
         public event OnConnectHandler OnConnect;
 
+        /// <summary>
+        /// Handler to call when [on login queue update].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="positionInLine">The position in line.</param>
         public delegate void OnLoginQueueUpdateHandler(object sender, int positionInLine);
+        /// <summary>
+        /// Occurs when [on login queue update].
+        /// </summary>
         public event OnLoginQueueUpdateHandler OnLoginQueueUpdate;
 
+        /// <summary>
+        /// Handler to call when [on login].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="username">The username.</param>
+        /// <param name="ipAddress">The ip address.</param>
         public delegate void OnLoginHandler(object sender, string username, string ipAddress);
+        /// <summary>
+        /// Occurs when [on login].
+        /// </summary>
         public event OnLoginHandler OnLogin;
 
+        /// <summary>
+        /// Handler to call when [on disconnect].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         public delegate void OnDisconnectHandler(object sender, EventArgs e);
+        /// <summary>
+        /// Occurs when [on disconnect].
+        /// </summary>
         public event OnDisconnectHandler OnDisconnect;
 
+        /// <summary>
+        /// Handler to call when [on error].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="error">The error.</param>
         public delegate void OnErrorHandler(object sender, Error error);
+        /// <summary>
+        /// Occurs when [on error].
+        /// </summary>
         public event OnErrorHandler OnError;
 
         #endregion
 
         #region Connect, Login, and Heartbeat Methods
 
+        /// <summary>
+        /// Connects the specified user.
+        /// </summary>
+        /// <param name="user">The user.</param>
+        /// <param name="password">The password.</param>
+        /// <param name="region">The region.</param>
+        /// <param name="clientVersion">The client version.</param>
         public void Connect(string user, string password, Region region, string clientVersion)
         {
             if (!isConnected)
@@ -242,11 +370,23 @@ namespace PVPNetConnect
             }
         }
 
+        /// <summary>
+        /// Accepts all certificates.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="certificate">The certificate.</param>
+        /// <param name="chain">The chain.</param>
+        /// <param name="sslPolicyErrors">The SSL policy errors.</param>
+        /// <returns>Returns true, meaning all certificates accepted.</returns>
         private bool AcceptAllCertificates(object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors)
         {
             return true;
         }
 
+        /// <summary>
+        /// Gets the garena token.
+        /// </summary>
+        /// <returns>Returns true if successful, false if not.</returns>
         private bool GetGarenaToken()
         {
             /*
@@ -339,6 +479,10 @@ namespace PVPNetConnect
             return false;
         }
 
+        /// <summary>
+        /// Gets the auth key.
+        /// </summary>
+        /// <returns>Returns true if successful, false if not.</returns>
         private bool GetAuthKey()
         {
             try
@@ -482,6 +626,11 @@ namespace PVPNetConnect
             }
         }
 
+        /// <summary>
+        /// Hexes to int.
+        /// </summary>
+        /// <param name="hex">The hex number.</param>
+        /// <returns>Returns the integer converted from hex number.</returns>
         private int HexToInt(string hex)
         {
             int total = 0;
@@ -497,6 +646,10 @@ namespace PVPNetConnect
             return total;
         }
 
+        /// <summary>
+        /// Gets the ip address.
+        /// </summary>
+        /// <returns>Returns true if successful, false if not.</returns>
         private bool GetIpAddress()
         {
             try
@@ -526,6 +679,10 @@ namespace PVPNetConnect
             }
         }
 
+        /// <summary>
+        /// Handshakes this instance.
+        /// </summary>
+        /// <returns>Returns true if successful, false if not.</returns>
         private bool Handshake()
         {
             byte[] handshakePacket = new byte[1537];
@@ -570,6 +727,10 @@ namespace PVPNetConnect
             return true;
         }
 
+        /// <summary>
+        /// Sends the connection info to server.
+        /// </summary>
+        /// <returns>Returns true if successful, false if not.</returns>
         private bool SendConnect()
         {
             Dictionary<string, object> paramaters = new Dictionary<string, object>();
@@ -612,6 +773,10 @@ namespace PVPNetConnect
             return true;
         }
 
+        /// <summary>
+        /// Begins login process to server.
+        /// </summary>
+        /// <returns>Returns true if successful, false if not.</returns>
         private bool Login()
         {
             TypedObject result, body;
@@ -702,6 +867,11 @@ namespace PVPNetConnect
             return true;
         }
 
+        /// <summary>
+        /// Gets the error message.
+        /// </summary>
+        /// <param name="message">The message.</param>
+        /// <returns>Returns the error message.</returns>
         private string GetErrorMessage(TypedObject message)
         {
             // Works for clientVersion
@@ -709,6 +879,9 @@ namespace PVPNetConnect
         }
 
 
+        /// <summary>
+        /// Starts the heartbeat, and contiuously performs the heartbeat.
+        /// </summary>
         private void StartHeartbeat()
         {
             heartbeatThread = new Thread(() =>
@@ -740,6 +913,9 @@ namespace PVPNetConnect
 
         #region Disconnect Methods
 
+        /// <summary>
+        /// Disconnects this instance from server.
+        /// </summary>
         public void Disconnect()
         {
             Thread t = new Thread(() =>
@@ -777,6 +953,11 @@ namespace PVPNetConnect
 
         #region Error Methods
 
+        /// <summary>
+        /// Formats the error message and shows it.
+        /// </summary>
+        /// <param name="message">The error message.</param>
+        /// <param name="type">The error type.</param>
         private void Error(string message, ErrorType type)
         {
             Console.WriteLine(message);
@@ -792,6 +973,11 @@ namespace PVPNetConnect
 
         #region Send Methods
 
+        /// <summary>
+        /// Invokes the specified packet.
+        /// </summary>
+        /// <param name="packet">The packet.</param>
+        /// <returns>Returns the invoke id.</returns>
         private int Invoke(TypedObject packet)
         {
             int id = NextInvokeID();
@@ -815,11 +1001,26 @@ namespace PVPNetConnect
             }
         }
 
+        /// <summary>
+        /// Invokes the specified destination, operation, and body by wrapping it into a packet and calling Invoke(packet).
+        /// </summary>
+        /// <param name="destination">The destination.</param>
+        /// <param name="operation">The operation.</param>
+        /// <param name="body">The body.</param>
+        /// <returns>Returns the invoke id.</returns>
         private int Invoke(string destination, object operation, object body)
         {
             return Invoke(WrapBody(body, destination, operation));
         }
 
+        /// <summary>
+        /// Invokes specified destination, operation, and body with a callback, by adding the callback to a list and calling Invoke(dest, opr, body) method.
+        /// </summary>
+        /// <param name="destination">The destination.</param>
+        /// <param name="operation">The operation.</param>
+        /// <param name="body">The body.</param>
+        /// <param name="cb">The cb.</param>
+        /// <returns>Invoke ID</returns>
         private int InvokeWithCallback(string destination, object operation, object body, RiotGamesObject cb)
         {
             if (isConnected)
@@ -835,6 +1036,13 @@ namespace PVPNetConnect
             }
         }
 
+        /// <summary>
+        /// Wraps the body, destination and operation into a packet form.
+        /// </summary>
+        /// <param name="body">The body.</param>
+        /// <param name="destination">The destination.</param>
+        /// <param name="operation">The operation.</param>
+        /// <returns>A TypedObject class which is packet form recognizable by server.</returns>
         protected TypedObject WrapBody(object body, string destination, object operation)
         {
             TypedObject headers = new TypedObject();
@@ -856,6 +1064,10 @@ namespace PVPNetConnect
             return ret;
         }
 
+        /// <summary>
+        /// Increments to the next invoke id.
+        /// </summary>
+        /// <returns>Returns the invoke id.</returns>
         protected int NextInvokeID()
         {
             return invokeID++;
@@ -864,6 +1076,9 @@ namespace PVPNetConnect
         #endregion
 
         #region Receive Methods
+        /// <summary>
+        /// Begins the receive polling to receive packets from server.
+        /// </summary>
         private void BeginReceive()
         {
             decodeThread = new Thread(() =>
@@ -1027,6 +1242,11 @@ namespace PVPNetConnect
         }
 
 
+        /// <summary>
+        /// Gets the result from the server based on specifed invoke ID.
+        /// </summary>
+        /// <param name="id">The invoke id.</param>
+        /// <returns>The TypedObject class which is of packet form.</returns>
         private TypedObject GetResult(int id)
         {
             while (IsConnected() && !results.ContainsKey(id))
@@ -1041,6 +1261,11 @@ namespace PVPNetConnect
             results.Remove(id);
             return ret;
         }
+        /// <summary>
+        /// Peeks the result from the server based on specified invoke ID.
+        /// </summary>
+        /// <param name="id">The invoke id.</param>
+        /// <returns>The TypedObject class which is of packet form.</returns>
         private TypedObject PeekResult(int id)
         {
             if (results.ContainsKey(id))
@@ -1052,6 +1277,10 @@ namespace PVPNetConnect
             return null;
         }
 
+
+        /// <summary>
+        /// Joins the pendingInvokes.
+        /// </summary>
         private void Join()
         {
             while (pendingInvokes.Count > 0)
@@ -1060,6 +1289,10 @@ namespace PVPNetConnect
             }
         }
 
+        /// <summary>
+        /// Joins the pending invokes based on specified invoke id.
+        /// </summary>
+        /// <param name="id">The invoke id.</param>
         private void Join(int id)
         {
             while (IsConnected() && pendingInvokes.Contains(id))
@@ -1067,6 +1300,10 @@ namespace PVPNetConnect
                 Thread.Sleep(10);
             }
         }
+        /// <summary>
+        /// Cancels the pending invoke based on specified invoke id.
+        /// </summary>
+        /// <param name="id">The invoke id.</param>
         private void Cancel(int id)
         {
             // Remove from pending invokes (only affects join())
@@ -1090,67 +1327,124 @@ namespace PVPNetConnect
 
         #region Public Client Methods
 
-        //PVPNet/User Information Methods
+
+        /// <summary>
+        /// Gets the login data packet for user.
+        /// </summary>
+        /// <param name="callback">The callback method.</param>
         public void GetLoginDataPacketForUser(LoginDataPacket.Callback callback)
         {
             LoginDataPacket cb = new LoginDataPacket(callback);
             InvokeWithCallback("clientFacadeService", "getLoginDataPacketForUser", new object[] { }, cb);
         }
 
+        /// <summary>
+        /// Gets all public summoner data by account ID.
+        /// </summary>
+        /// <param name="accountID">The account ID.</param>
+        /// <param name="callback">The callback method.</param>
         public void GetAllPublicSummonerDataByAccount(int accountID, AllPublicSummonerData.Callback callback)
         {
             AllPublicSummonerData cb = new AllPublicSummonerData(callback);
             InvokeWithCallback("summonerService", "getAllPublicSummonerDataByAccount", new object[] { accountID }, cb);
         }
 
+        /// <summary>
+        /// Gets all summoner data by account ID, usually only works for logged in user.
+        /// </summary>
+        /// <param name="accountID">The account ID.</param>
+        /// <param name="callback">The callback method.</param>
         public void GetAllSummonerDataByAccount(int accountID, AllSummonerData.Callback callback)
         {
             AllSummonerData cb = new AllSummonerData(callback);
             InvokeWithCallback("summonerService", "getAllSummonerDataByAccount", new object[] { accountID }, cb);
         }
 
+        /// <summary>
+        /// Gets the public summoner information by name.
+        /// </summary>
+        /// <param name="summonerName">Name of the summoner.</param>
+        /// <param name="callback">The callback method.</param>
         public void GetSummonerByName(string summonerName, PublicSummoner.Callback callback)
         {
             PublicSummoner cb = new PublicSummoner(callback);
             InvokeWithCallback("summonerService", "getSummonerByName", new object[] { summonerName }, cb);
         }
 
+        /// <summary>
+        /// Gets all the summoner names by list of summoner IDs.
+        /// </summary>
+        /// <param name="summonerIDs">The summoner IDs.</param>
+        /// <param name="callback">The callback method.</param>
         public void GetSummonerNames(object[] summonerIDs, UnclassedObject.Callback callback)
         {
             UnclassedObject cb = new UnclassedObject(callback);
             InvokeWithCallback("summonerService", "getSummonerNames", new object[] { summonerIDs }, cb);
         }
 
+        /// <summary>
+        /// Gets the recent games of summoner by account ID.
+        /// </summary>
+        /// <param name="accountID">The account ID.</param>
+        /// <param name="callback">The callback method.</param>
         public void GetRecentGames(int accountID, RecentGames.Callback callback)
         {
             RecentGames cb = new RecentGames(callback);
             InvokeWithCallback("playerStatsService", "getRecentGames", new object[] { accountID }, cb);
         }
 
-        public void RetrievePlayerStatsByAccountId(int accountID, StringEnum.Seasons season, PlayerLifetimeStats.Callback callback)
+        /// <summary>
+        /// Retrieves the player/summoner stats by account id (includes queue type stats and lifetime stats).
+        /// </summary>
+        /// <param name="accountID">The account ID.</param>
+        /// <param name="season">The season enum.</param>
+        /// <param name="callback">The callback method.</param>
+        public void RetrievePlayerStatsByAccountId(int accountID, Seasons season, PlayerLifetimeStats.Callback callback)
         {
             PlayerLifetimeStats cb = new PlayerLifetimeStats(callback);
             InvokeWithCallback("playerStatsService", "retrievePlayerStatsByAccountId", new object[] { accountID, StringEnum.GetStringValue(season) }, cb);
         }
 
-        public void GetAggregatedStats(int accountID, StringEnum.GameModes gameMode, StringEnum.Seasons season, AggregatedStats.Callback callback)
+        /// <summary>
+        /// Gets the aggregated stats of the summoner.
+        /// </summary>
+        /// <param name="accountID">The account ID.</param>
+        /// <param name="gameMode">The game mode enum.</param>
+        /// <param name="season">The season enum.</param>
+        /// <param name="callback">The callback method.</param>
+        public void GetAggregatedStats(int accountID, GameModes gameMode, Seasons season, AggregatedStats.Callback callback)
         {
             AggregatedStats cb = new AggregatedStats(callback);
             InvokeWithCallback("playerStatsService", "getAggregatedStats", new object[] { accountID, StringEnum.GetStringValue(gameMode), StringEnum.GetStringValue(season) }, cb);
         }
 
+        /// <summary>
+        /// Retrieves the in progress spectator game info by summoner name in game.
+        /// </summary>
+        /// <param name="summonerName">Name of the summoner.</param>
+        /// <param name="callback">The callback method.</param>
         public void RetrieveInProgressSpectatorGameInfo(string summonerName, PlatformGameLifecycle.Callback callback)
         {
             PlatformGameLifecycle cb = new PlatformGameLifecycle(callback);
             InvokeWithCallback("gameService", "retrieveInProgressSpectatorGameInfo", new object[] { summonerName }, cb);
         }
 
+        /// <summary>
+        /// Gets the mastery book for summoner by summoner ID.
+        /// </summary>
+        /// <param name="summonerID">The summoner ID.</param>
+        /// <param name="callback">The callback method.</param>
         public void GetMasteryBook(int summonerID, MasteryBook.Callback callback)
         {
             MasteryBook cb = new MasteryBook(callback);
             InvokeWithCallback("masteryBookService", "getMasteryBook", new object[] { summonerID }, cb);
         }
 
+        /// <summary>
+        /// Gets the rune/spell book for summoner by summoner ID.
+        /// </summary>
+        /// <param name="summonerID">The summoner ID.</param>
+        /// <param name="callback">The callback method .</param>
         public void GetSpellBook(int summonerID, SpellBook.Callback callback)
         {
             SpellBook cb = new SpellBook(callback);
@@ -1158,19 +1452,35 @@ namespace PVPNetConnect
         }
 
         // TODO: Not working because return type is only an object array
-        public void RetrieveTopPlayedChampions(int accountID, StringEnum.GameModes gameMode, TopPlayedChampions.Callback callback)
+        /// <summary>
+        /// Retrieves the top played champions of summoner by account ID.
+        /// </summary>
+        /// <param name="accountID">The account ID.</param>
+        /// <param name="gameMode">The game mode enum.</param>
+        /// <param name="callback">The callback method.</param>
+        public void RetrieveTopPlayedChampions(int accountID, GameModes gameMode, TopPlayedChampions.Callback callback)
         {
             TopPlayedChampions cb = new TopPlayedChampions(callback);
             InvokeWithCallback("playerStatsService", "retrieveTopPlayedChampions", new object[] { accountID, StringEnum.GetStringValue(gameMode) }, cb);
         }
 
         //Chat Information Methods
+        /// <summary>
+        /// Gets the name of the summoner chat id by.
+        /// </summary>
+        /// <param name="summonerName">Name of the summoner.</param>
+        /// <param name="callback">The callback method.</param>
         public void GetSummonerChatIdByName(string summonerName, UnclassedObject.Callback callback)
         {
             UnclassedObject cb = new UnclassedObject(callback);
             InvokeWithCallback("summonerService", "getSummonerInternalNameByName", new object[] { summonerName }, cb);
         }
 
+        /// <summary>
+        /// Gets the summoner summary by chat id.
+        /// </summary>
+        /// <param name="summonerChatId">The summoner chat id.</param>
+        /// <param name="callback">The callback method.</param>
         public void GetSummonerSummaryByChatId(string summonerChatId, UnclassedObject.Callback callback)
         {
             UnclassedObject cb = new UnclassedObject(callback);
@@ -1180,6 +1490,12 @@ namespace PVPNetConnect
         #endregion
 
         #region General Returns
+        /// <summary>
+        /// Determines whether this instance is connected to server.
+        /// </summary>
+        /// <returns>
+        ///   <c>true</c> if this instance is connected; otherwise, <c>false</c>.
+        /// </returns>
         public bool IsConnected()
         {
             return isConnected;

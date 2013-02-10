@@ -12,18 +12,39 @@ namespace PVPNetConnect.RiotObjects.Summoner
     {
         #region Constructors and Callbacks
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PublicSummoner"/> class.
+        /// </summary>
+        /// <param name="callback">The callback.</param>
         public PublicSummoner(Callback callback)
         {
             this.callback = callback;
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PublicSummoner"/> class.
+        /// </summary>
+        /// <param name="result">The result.</param>
         public PublicSummoner(TypedObject result)
         {
             base.SetFields<PublicSummoner>(this, result);
         }
 
+        /// <summary>
+        /// The delegate for the callback method.
+        /// </summary>
+        /// <param name="result">The result.</param>
         public delegate void Callback(PublicSummoner result);
+
+        /// <summary>
+        /// The callback method.
+        /// </summary>
         private Callback callback;
+
+        /// <summary>
+        /// The DoCallback method.
+        /// </summary>
+        /// <param name="result">The result.</param>
         public override void DoCallback(TypedObject result)
         {
             base.SetFields<PublicSummoner>(this, result);

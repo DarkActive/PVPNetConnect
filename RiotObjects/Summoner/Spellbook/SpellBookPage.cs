@@ -5,10 +5,17 @@ using System.Text;
 
 namespace PVPNetConnect.RiotObjects.Summoner
 {
+    /// <summary>
+    /// The class that defines the spellbook page.
+    /// </summary>
     public class SpellBookPage : RiotGamesObject
     {
         #region Constructors and Callbacks
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SpellBookPage"/> class.
+        /// </summary>
+        /// <param name="result">The result.</param>
         public SpellBookPage(TypedObject result)
         {
             base.SetFields<SpellBookPage>(this, result);

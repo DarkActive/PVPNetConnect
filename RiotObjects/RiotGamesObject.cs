@@ -7,13 +7,27 @@ using System.Reflection;
 
 namespace PVPNetConnect.RiotObjects
 {
+    /// <summary>
+    /// RiotGamesObject is the base class for all Riot objects.
+    /// </summary>
    public abstract class RiotGamesObject
    {
-       public virtual void DoCallback(TypedObject result)
-       {
-           return;
-       }
+       /// <summary>
+       /// The base virtual DoCallback method.
+       /// </summary>
+       /// <param name="result">The result.</param>
+      public virtual void DoCallback(TypedObject result)
+      {
+         return;
+      }
 
+      /// <summary>
+      /// Sets the fields of the object and decode/parse into correct fields.
+      /// </summary>
+      /// <typeparam name="T"></typeparam>
+      /// <param name="obj">The obj.</param>
+      /// <param name="result">The result.</param>
+      /// <exception cref="System.NotSupportedException"></exception>
       public void SetFields<T>(T obj, TypedObject result)
       {
          if (result == null)
@@ -112,9 +126,23 @@ namespace PVPNetConnect.RiotObjects
       }
    }
 
+   /// <summary>
+   /// The InternalName Atribute class to specify the name that Riot's server is expecting.
+   /// </summary>
    public class InternalNameAttribute : Attribute
    {
+       /// <summary>
+       /// Gets or sets the name of the InternalName
+       /// </summary>
+       /// <value>
+       /// The name.
+       /// </value>
       public string Name { get; set; }
+
+      /// <summary>
+      /// Initializes a new instance of the <see cref="InternalNameAttribute"/> class.
+      /// </summary>
+      /// <param name="name">The name.</param>
       public InternalNameAttribute(string name)
       {
          Name = name;

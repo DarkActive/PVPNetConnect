@@ -12,6 +12,10 @@ namespace PVPNetConnect.RiotObjects.Game
     {
         #region Constructors and Callbacks
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PlayerCredentials"/> class.
+        /// </summary>
+        /// <param name="result">The result.</param>
         public PlayerCredentials(TypedObject result)
         {
             base.SetFields<PlayerCredentials>(this, result);

@@ -6,12 +6,16 @@ using System.Text;
 namespace PVPNetConnect.RiotObjects.Game
 {
     /// <summary>
-    /// Class with in progress game and spectator info.
+    /// Class that defines a player participant and its infromation.
     /// </summary>
     public class PlayerParticipant : RiotGamesObject
     {
         #region Constructors and Callbacks
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PlayerParticipant"/> class.
+        /// </summary>
+        /// <param name="result">The result.</param>
         public PlayerParticipant(TypedObject result)
         {
             base.SetFields<PlayerParticipant>(this, result);
@@ -80,12 +84,6 @@ namespace PVPNetConnect.RiotObjects.Game
         /// </summary>
         [InternalName("minor")]
         public bool Minor { get; set; }
-
-        /// <summary>
-        /// Locale ??? unknown variable type
-        /// </summary>
-        /*[InternalName("locale")]
-        public PlayerCredentials PlayerCredentials { get; set; }*/
 
         /// <summary>
         /// The skin ID that was last selected by the observer (summoner).

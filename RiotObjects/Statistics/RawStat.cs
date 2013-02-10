@@ -5,6 +5,9 @@ using System.Text;
 
 namespace PVPNetConnect.RiotObjects.Statistics
 {
+    /// <summary>
+    /// The class that defines a raw stats and its information.
+    /// </summary>
     public class RawStat : RiotGamesObject
     {
         #region Constructors and Callbacks

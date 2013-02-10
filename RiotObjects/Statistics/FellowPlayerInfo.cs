@@ -5,6 +5,9 @@ using System.Text;
 
 namespace PVPNetConnect.RiotObjects.Statistics
 {
+    /// <summary>
+    /// The class that defines the fellow player and its information.
+    /// </summary>
     public class FellowPlayerInfo : RiotGamesObject
     {
         #region Constructors and Callbacks

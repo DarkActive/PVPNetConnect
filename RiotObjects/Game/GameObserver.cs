@@ -6,12 +6,16 @@ using System.Text;
 namespace PVPNetConnect.RiotObjects.Game
 {
     /// <summary>
-    /// Class with in progress game and spectator info.
+    /// Class which defines a GameObserver and its information.
     /// </summary>
     public class GameObserver : RiotGamesObject
     {
         #region Constructors and Callbacks
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GameObserver"/> class.
+        /// </summary>
+        /// <param name="result">The result.</param>
         public GameObserver(TypedObject result)
         {
             base.SetFields<GameObserver>(this, result);
@@ -51,9 +55,6 @@ namespace PVPNetConnect.RiotObjects.Game
         [InternalName("summonerName")]
         public string SummonerName { get; set; }
 
-        /// <summary>
-        /// Locale ??? unknown variable type
-        /// </summary>
         /*[InternalName("locale")]
         public PlayerCredentials PlayerCredentials { get; set; }*/
 

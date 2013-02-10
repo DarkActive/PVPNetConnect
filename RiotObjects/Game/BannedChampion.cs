@@ -12,6 +12,10 @@ namespace PVPNetConnect.RiotObjects.Game
     {
         #region Constructors and Callbacks
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BannedChampion"/> class.
+        /// </summary>
+        /// <param name="result">The result.</param>
         public BannedChampion(TypedObject result)
         {
             base.SetFields<BannedChampion>(this, result);

@@ -5,10 +5,17 @@ using System.Text;
 
 namespace PVPNetConnect.RiotObjects.Summoner
 {
+    /// <summary>
+    /// The class that defines the MasteryBookPage
+    /// </summary>
     public class MasteryBookPage : RiotGamesObject
     {
         #region Constructors and Callbacks
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MasteryBookPage"/> class.
+        /// </summary>
+        /// <param name="result">The result.</param>
         public MasteryBookPage(TypedObject result)
         {
             base.SetFields<MasteryBookPage>(this, result);
