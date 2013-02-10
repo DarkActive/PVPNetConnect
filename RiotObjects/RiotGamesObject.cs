@@ -79,7 +79,7 @@ namespace PVPNetConnect.RiotObjects
                   value = (TypedObject)result[intern.Name];
                }
 
-               else if (type.GetGenericTypeDefinition() == typeof(List<>))
+               else if (type.IsGenericType && type.GetGenericTypeDefinition() == typeof(List<>))
                {
                    object[] temp = result.GetArray(intern.Name);
 
@@ -90,12 +90,33 @@ namespace PVPNetConnect.RiotObjects
 
                    foreach (object data in temp)
                    {
-                       objectList.Add(Activator.CreateInstance(elementType, data));
+                       if (elementType == typeof(string))
+                       {
+                           objectList.Add((string)data);
+                       }
+                       else
+                       {
+                           objectList.Add(Activator.CreateInstance(elementType, data));
+                       }
                    }
 
                    value = objectList;
                }
+               else if (type.IsGenericType && type.GetGenericTypeDefinition() == typeof(Dictionary<,>))
+               {
+                   TypedObject to = result.GetTO(intern.Name);
 
+                   Type[] elementTypes = type.GetGenericArguments();
+                   var genericDictionaryType = typeof(Dictionary<,>).MakeGenericType(elementTypes);
+                   IDictionary objectDictionary = (IDictionary)Activator.CreateInstance(genericDictionaryType);
+
+                   foreach (string key in to.Keys)
+                   {
+                       objectDictionary.Add(key, Activator.CreateInstance(elementTypes[1], to[key]));
+                   }
+
+                   value = objectDictionary;
+               }
                else if (type == typeof(object[]))
                {
                    value = new ArrayCollection(result.GetArray(intern.Name));

@@ -389,6 +389,9 @@ namespace PVPNetConnect
         /// <returns>Returns true if successful, false if not.</returns>
         private bool GetGarenaToken()
         {
+            // temp fix, to suppress warnings
+            userID = "0";
+            garenaToken = "0";
             /*
             try
             {

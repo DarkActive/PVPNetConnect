@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace PVPNetConnect.RiotObjects.Summoner
+namespace PVPNetConnect.RiotObjects.Catalog
 {
     /// <summary>
     /// The class that defines talent.
