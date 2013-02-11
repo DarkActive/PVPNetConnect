@@ -26,6 +26,7 @@ namespace PVPNetConnect
        /// <summary>
        /// The start time
        /// </summary>
+      [ThreadStatic]
       public static long startTime = (long)DateTime.Now.TimeOfDay.TotalMilliseconds;
 
       /// <summary>

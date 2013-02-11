@@ -26,25 +26,30 @@ namespace PVPNetConnect
        /// <summary>
        /// The data buffer
        /// </summary>
+      [ThreadStatic]
       private static byte[] dataBuffer;
       /// <summary>
       /// The data pos
       /// </summary>
+      [ThreadStatic]
       private static int dataPos;
 
       // Lists of references and class definitions seen so far
       /// <summary>
       /// The string references
       /// </summary>
-      private static List<string> stringReferences = new List<string>();
+      [ThreadStatic]
+      private static List<string> stringReferences;
       /// <summary>
       /// The object references
       /// </summary>
-      private static List<object> objectReferences = new List<object>();
+      [ThreadStatic]
+      private static List<object> objectReferences;
       /// <summary>
       /// The class definitions
       /// </summary>
-      private static List<ClassDefinition> classDefinitions = new List<ClassDefinition>();
+      [ThreadStatic]
+      private static List<ClassDefinition> classDefinitions;
 
 
       /// <summary>
@@ -52,9 +57,9 @@ namespace PVPNetConnect
       /// </summary>
       private static void Reset()
       {
-         stringReferences.Clear();
-         objectReferences.Clear();
-         classDefinitions.Clear();
+         stringReferences = new List<string>();
+         objectReferences = new List<object>();
+         classDefinitions = new List<ClassDefinition>();
       }
 
       /// <summary>

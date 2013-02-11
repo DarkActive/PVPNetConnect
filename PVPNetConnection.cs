@@ -39,7 +39,7 @@ namespace PVPNetConnect
         #region Member Declarations
 
         /// <summary>
-        /// The is connected
+        /// The boolean check for connection being active.
         /// </summary>
         private bool isConnected = false;
         /// <summary>
@@ -49,7 +49,7 @@ namespace PVPNetConnect
         /// <summary>
         /// The SSL stream
         /// </summary>
-        private SslStream sslStream;
+        private SafeSslStream sslStream;
         /// <summary>
         /// The ip address
         /// </summary>
@@ -71,7 +71,7 @@ namespace PVPNetConnect
         /// </summary>
         private string DSId;
 
-        //Initial Login Information
+        /* Initial Login Information */
         /// <summary>
         /// The user
         /// </summary>
@@ -97,7 +97,7 @@ namespace PVPNetConnect
         /// </summary>
         private string clientVersion;
 
-        /** Garena information */
+        /* Garena information */
         /// <summary>
         /// The use garena
         /// </summary>
@@ -112,7 +112,7 @@ namespace PVPNetConnect
         private string userID;
 
 
-        //Invoke Variables
+        /* Invoke Variables */
         /// <summary>
         /// The rand
         /// </summary>
@@ -140,18 +140,9 @@ namespace PVPNetConnect
         /// </summary>
         private Dictionary<int, RiotGamesObject> callbacks = new Dictionary<int, RiotGamesObject>();
         /// <summary>
-        /// The decode thread
-        /// </summary>
-        private Thread decodeThread;
-
-        /// <summary>
         /// The heartbeat count
         /// </summary>
         private int heartbeatCount = 1;
-        /// <summary>
-        /// The heartbeat thread
-        /// </summary>
-        private Thread heartbeatThread;
 
         #endregion
 
@@ -228,147 +219,149 @@ namespace PVPNetConnect
         {
             if (!isConnected)
             {
-                Thread t = new Thread(() =>
+                this.user = user;
+                this.password = password;
+                this.clientVersion = clientVersion;
+
+                if (region == Region.NA)
                 {
-                    this.user = user;
-                    this.password = password;
-                    this.clientVersion = clientVersion;
+                    this.server = "prod.na1.lol.riotgames.com";
+                    this.loginQueue = "https://lq.na1.lol.riotgames.com/";
+                    this.locale = "en_US";
+                }
+                else if (region == Region.EUW)
+                {
+                    this.server = "prod.eu.lol.riotgames.com";
+                    this.loginQueue = "https://lq.eu.lol.riotgames.com/";
+                    this.locale = "en_GB";
+                }
+                else if (region == Region.EUN)
+                {
+                    this.server = "prod.eun1.lol.riotgames.com";
+                    this.loginQueue = "https://lq.eun1.lol.riotgames.com/";
+                    this.locale = "en_GB";
+                }
+                else if (region == Region.KR)
+                {
+                    this.server = "prod.kr.lol.riotgames.com";
+                    this.loginQueue = "https://lq.kr.lol.riotgames.com/";
+                    this.locale = "ko_KR";
+                }
+                else if (region == Region.BR)
+                {
+                    this.server = "prod.br.lol.riotgames.com";
+                    this.loginQueue = "https://lq.br.lol.riotgames.com/";
+                    this.locale = "pt_BR";
+                }
+                else if (region == Region.TR)
+                {
+                    this.server = "prod.tr.lol.riotgames.com";
+                    this.loginQueue = "https://lq.tr.lol.riotgames.com/";
+                    this.locale = "pt_BR";
+                }
+                else if (region == Region.PBE)
+                {
+                    this.server = "prod.pbe1.lol.riotgames.com";
+                    this.loginQueue = "https://lq.pbe1.lol.riotgames.com/";
+                    this.locale = "en_US";
+                }
+                else if (region == Region.SG || region == Region.MY || region == Region.SGMY)
+                {
+                    this.server = "prod.lol.garenanow.com";
+                    this.loginQueue = "https://lq.lol.garenanow.com/";
+                    this.locale = "en_US";
+                    this.useGarena = true;
+                }
+                else if (region == Region.TW)
+                {
+                    this.server = "prodtw.lol.garenanow.com";
+                    this.loginQueue = "https://loginqueuetw.lol.garenanow.com/";
+                    this.locale = "en_US";
+                    this.useGarena = true;
+                }
+                else if (region == Region.TH)
+                {
+                    this.server = "prodth.lol.garenanow.com";
+                    this.loginQueue = "https://lqth.lol.garenanow.com/";
+                    this.locale = "en_US";
+                    this.useGarena = true;
+                }
+                else if (region == Region.PH)
+                {
+                    this.server = "prodph.lol.garenanow.com";
+                    this.loginQueue = "https://storeph.lol.garenanow.com/";
+                    this.locale = "en_US";
+                    this.useGarena = true;
+                }
+                else if (region == Region.VN)
+                {
+                    this.server = "prodvn.lol.garenanow.com";
+                    this.loginQueue = "https://lqvn.lol.garenanow.com/";
+                    this.locale = "en_US";
+                    this.useGarena = true;
+                }
+                else
+                {
+                    Error("Unknown Region: " + region, ErrorType.General);
+                    Disconnect();
+                    return;
+                }
 
-                    if (region == Region.NA)
-                    {
-                        this.server = "prod.na1.lol.riotgames.com";
-                        this.loginQueue = "https://lq.na1.lol.riotgames.com/";
-                        this.locale = "en_US";
-                    }
-                    else if (region == Region.EUW)
-                    {
-                        this.server = "prod.eu.lol.riotgames.com";
-                        this.loginQueue = "https://lq.eu.lol.riotgames.com/";
-                        this.locale = "en_GB";
-                    }
-                    else if (region == Region.EUN)
-                    {
-                        this.server = "prod.eun1.lol.riotgames.com";
-                        this.loginQueue = "https://lq.eun1.lol.riotgames.com/";
-                        this.locale = "en_GB";
-                    }
-                    else if (region == Region.KR)
-                    {
-                        this.server = "prod.kr.lol.riotgames.com";
-                        this.loginQueue = "https://lq.kr.lol.riotgames.com/";
-                        this.locale = "ko_KR";
-                    }
-                    else if (region == Region.BR)
-                    {
-                        this.server = "prod.br.lol.riotgames.com";
-                        this.loginQueue = "https://lq.br.lol.riotgames.com/";
-                        this.locale = "pt_BR";
-                    }
-                    else if (region == Region.TR)
-                    {
-                        this.server = "prod.tr.lol.riotgames.com";
-                        this.loginQueue = "https://lq.tr.lol.riotgames.com/";
-                        this.locale = "pt_BR";
-                    }
-                    else if (region == Region.PBE)
-                    {
-                        this.server = "prod.pbe1.lol.riotgames.com";
-                        this.loginQueue = "https://lq.pbe1.lol.riotgames.com/";
-                        this.locale = "en_US";
-                    }
-                    else if (region == Region.SG || region == Region.MY || region == Region.SGMY)
-                    {
-                        this.server = "prod.lol.garenanow.com";
-                        this.loginQueue = "https://lq.lol.garenanow.com/";
-                        this.locale = "en_US";
-                        this.useGarena = true;
-                    }
-                    else if (region == Region.TW)
-                    {
-                        this.server = "prodtw.lol.garenanow.com";
-                        this.loginQueue = "https://loginqueuetw.lol.garenanow.com/";
-                        this.locale = "en_US";
-                        this.useGarena = true;
-                    }
-                    else if (region == Region.TH)
-                    {
-                        this.server = "prodth.lol.garenanow.com";
-                        this.loginQueue = "https://lqth.lol.garenanow.com/";
-                        this.locale = "en_US";
-                        this.useGarena = true;
-                    }
-                    else if (region == Region.PH)
-                    {
-                        this.server = "prodph.lol.garenanow.com";
-                        this.loginQueue = "https://storeph.lol.garenanow.com/";
-                        this.locale = "en_US";
-                        this.useGarena = true;
-                    }
-                    else if (region == Region.VN)
-                    {
-                        this.server = "prodvn.lol.garenanow.com";
-                        this.loginQueue = "https://lqvn.lol.garenanow.com/";
-                        this.locale = "en_US";
-                        this.useGarena = true;
-                    }
-                    else
-                    {
-                        Error("Unknown Region: " + region, ErrorType.General);
-                        Disconnect();
-                        return;
-                    }
-
-
-                    //Sets up our sslStream to riots servers
-                    try
-                    {
-                        client = new TcpClient(server, 2099);
-                    }
-                    catch
-                    {
-                        Error("Riots servers are currently unabailable.", ErrorType.AuthKey);
-                        Disconnect();
-                        return;
-                    }
-
-                    //Check for riot webserver status
-                    //along with gettin out Auth Key that we need for the login process.
-                    if (useGarena)
-                        if (!GetGarenaToken())
-                            return;
-
-                    if (!GetAuthKey())
-                        return;
-
-                    if (!GetIpAddress())
-                        return;
-
-                    sslStream = new SslStream(client.GetStream(), false, AcceptAllCertificates);
-                    var ar = sslStream.BeginAuthenticateAsClient(server, null, null);
-                    using (ar.AsyncWaitHandle)
-                    {
-                        if (ar.AsyncWaitHandle.WaitOne(-1))
-                        {
-                            sslStream.EndAuthenticateAsClient(ar);
-                        }
-                    }
-
-                    if (!Handshake())
-                        return;
-
-                    BeginReceive();
-
-                    if (!SendConnect())
-                        return;
-
-                    if (!Login())
-                        return;
-
-                    StartHeartbeat();
-                });
-
-                t.Start();
+                ThreadPool.QueueUserWorkItem(new WaitCallback(Connect), this);
             }
+        }
+
+        private static void Connect(object sender)
+        {
+            PVPNetConnection pvpnet = (PVPNetConnection)sender;
+
+            //Sets up our sslStream to riots servers
+            try
+            {
+                pvpnet.client = new TcpClient(pvpnet.server, 2099);
+            }
+            catch
+            {
+                pvpnet.Error("Riots servers are currently unabailable.", ErrorType.AuthKey);
+                pvpnet.Disconnect();
+                return;
+            }
+
+            //Check for riot webserver status
+            //along with gettin out Auth Key that we need for the login process.
+            if (pvpnet.useGarena)
+                if (!pvpnet.GetGarenaToken())
+                    return;
+
+            if (!pvpnet.GetAuthKey())
+                return;
+
+            if (!pvpnet.GetIpAddress())
+                return;
+
+            // TODO: Added SslStream.Syncrhonized() for thread safe.
+            pvpnet.sslStream = new SafeSslStream(new SslStream(SslStream.Synchronized(pvpnet.client.GetStream()), false, pvpnet.AcceptAllCertificates));
+            var ar = pvpnet.sslStream.BeginAuthenticateAsClient(pvpnet.server, null, null);
+            using (ar.AsyncWaitHandle)
+            {
+                if (ar.AsyncWaitHandle.WaitOne(-1))
+                {
+                    pvpnet.sslStream.EndAuthenticateAsClient(ar);
+                }
+            }
+
+            if (!pvpnet.Handshake())
+                return;
+
+            ThreadPool.QueueUserWorkItem(new WaitCallback(BeginReceive), pvpnet);
+
+            if (!pvpnet.SendConnect())
+                return;
+
+            if (!pvpnet.Login())
+                return;
+
+            ThreadPool.QueueUserWorkItem(new WaitCallback(StartHeartbeat), pvpnet);
         }
 
         /// <summary>
@@ -691,7 +684,7 @@ namespace PVPNetConnect
         {
             byte[] handshakePacket = new byte[1537];
             rand.NextBytes(handshakePacket);
-            handshakePacket[0] = (byte)0x03;
+            handshakePacket[0] = (byte)0x03;    
             sslStream.Write(handshakePacket);
 
             byte S0 = (byte)sslStream.ReadByte();
@@ -704,7 +697,7 @@ namespace PVPNetConnect
 
 
             byte[] responsePacket = new byte[1536];
-            sslStream.Read(responsePacket, 0, 1536);
+            sslStream.Read(responsePacket, 0, 1536);            
             sslStream.Write(responsePacket);
 
             // Wait for response and discard result
@@ -886,32 +879,30 @@ namespace PVPNetConnect
         /// <summary>
         /// Starts the heartbeat, and contiuously performs the heartbeat.
         /// </summary>
-        private void StartHeartbeat()
+        private static void StartHeartbeat(object sender)
         {
-            heartbeatThread = new Thread(() =>
+            PVPNetConnection pvpnet = (PVPNetConnection)sender;
+
+            while (pvpnet.isConnected)
             {
-                while (true)
+                try
                 {
-                    try
-                    {
-                        long hbTime = (long)DateTime.Now.TimeOfDay.TotalMilliseconds;
+                    long hbTime = (long)DateTime.Now.TimeOfDay.TotalMilliseconds;
 
-                        int id = Invoke("loginService", "performLCDSHeartBeat", new object[] { accountID, sessionToken, heartbeatCount, DateTime.Now.ToString("ddd MMM d yyyy HH:mm:ss 'GMT-0700'") });
-                        Cancel(id); // Ignore result for now
+                    int id = pvpnet.Invoke("loginService", "performLCDSHeartBeat", new object[] { pvpnet.accountID, pvpnet.sessionToken, pvpnet.heartbeatCount, DateTime.Now.ToString("ddd MMM d yyyy HH:mm:ss 'GMT-0700'") });
+                    pvpnet.Cancel(id); // Ignore result for now
 
-                        heartbeatCount++;
+                    pvpnet.heartbeatCount++;
 
-                        // Quick sleeps to shutdown the heartbeat quickly on a reconnect
-                        while ((long)DateTime.Now.TimeOfDay.TotalMilliseconds - hbTime < 120000)
-                            Thread.Sleep(100);
-                    }
-                    catch
-                    {
-
-                    }
+                    // Quick sleeps to shutdown the heartbeat quickly on a reconnect
+                    while ((long)DateTime.Now.TimeOfDay.TotalMilliseconds - hbTime < 120000)
+                        Thread.Sleep(100);
                 }
-            });
-            heartbeatThread.Start();
+                catch
+                {
+
+                }
+            }
         }
         #endregion
 
@@ -922,37 +913,35 @@ namespace PVPNetConnect
         /// </summary>
         public void Disconnect()
         {
-            Thread t = new Thread(() =>
-            {
-                if (isConnected)
-                {
-                    int id = Invoke("loginService", "logout", new object[] { authToken });
-                    Join(id);
-                }
-
-                isConnected = false;
-
-                if (heartbeatThread != null)
-                    heartbeatThread.Abort();
-
-                if (decodeThread != null)
-                    decodeThread.Abort();
-
-                invokeID = 2;
-                heartbeatCount = 1;
-                pendingInvokes.Clear();
-                callbacks.Clear();
-                results.Clear();
-
-                client = null;
-                sslStream = null;
-
-                if (OnDisconnect != null)
-                    OnDisconnect(this, EventArgs.Empty);
-            });
-
-            t.Start();
+            ThreadPool.QueueUserWorkItem(new WaitCallback(Disconnect), this);
         }
+
+        private static void Disconnect(object sender)
+        {
+            PVPNetConnection pvpnet = (PVPNetConnection)sender;
+
+            if (pvpnet.isConnected)
+            {
+                int id = pvpnet.Invoke("loginService", "logout", new object[] { pvpnet.authToken });
+                pvpnet.Join(id);
+            }
+
+            // Setting isConnected to false, should be enough to stop threads in ThreadPool
+            pvpnet.isConnected = false;
+
+            pvpnet.invokeID = 2;
+            pvpnet.heartbeatCount = 1;
+            pvpnet.pendingInvokes.Clear();
+            pvpnet.callbacks.Clear();
+            pvpnet.results.Clear();
+
+            pvpnet.client = null;
+            pvpnet.sslStream = null;
+
+            if (pvpnet.OnDisconnect != null)
+                pvpnet.OnDisconnect(pvpnet, EventArgs.Empty);
+        }
+
         #endregion
 
         #region Error Methods
@@ -1083,168 +1072,172 @@ namespace PVPNetConnect
         /// <summary>
         /// Begins the receive polling to receive packets from server.
         /// </summary>
-        private void BeginReceive()
+        private static void BeginReceive(object obj)
         {
-            decodeThread = new Thread(() =>
+            PVPNetConnection pvpnet = (PVPNetConnection)obj;
+
+            try
             {
-                try
+                Dictionary<int, Packet> packets = new Dictionary<int, Packet>();
+
+                while (pvpnet.isConnected)
                 {
-                    Dictionary<int, Packet> packets = new Dictionary<int, Packet>();
-
-                    while (true)
+                    byte basicHeader = (byte)pvpnet.sslStream.ReadByte();
+                    if ((int)basicHeader == -1)
                     {
-                        byte basicHeader = (byte)sslStream.ReadByte();
-                        if ((int)basicHeader == -1)
-                        {
-                            Disconnect();
-                        }
-
-                        int channel = basicHeader & 0x2F;
-                        int headerType = basicHeader & 0xC0;
-
-                        int headerSize = 0;
-                        if (headerType == 0x00)
-                            headerSize = 12;
-                        else if (headerType == 0x40)
-                            headerSize = 8;
-                        else if (headerType == 0x80)
-                            headerSize = 4;
-                        else if (headerType == 0xC0)
-                            headerSize = 1;
-
-                        // Retrieve the packet or make a new one
-                        if (!packets.ContainsKey(channel))
-                            packets.Add(channel, new Packet());
-                        Packet p = packets[channel];
-
-                        // Parse the full header
-                        if (headerSize > 1)
-                        {
-                            byte[] header = new byte[headerSize - 1];
-                            for (int i = 0; i < header.Length; i++)
-                                header[i] = (byte)sslStream.ReadByte();
-
-                            if (headerSize >= 8)
-                            {
-                                int size = 0;
-                                for (int i = 3; i < 6; i++)
-                                    size = size * 256 + (header[i] & 0xFF);
-                                p.SetSize(size);
-
-                                p.SetType(header[6]);
-                            }
-                        }
-
-                        // Read rest of packet
-                        for (int i = 0; i < 128; i++)
-                        {
-                            byte b = (byte)sslStream.ReadByte();
-                            p.Add(b);
-
-                            if (p.IsComplete())
-                                break;
-                        }
-
-                        if (!p.IsComplete())
-                            continue;
-
-                        // Remove the read packet
-                        packets.Remove(channel);
-
-
-                        // Decode result
-                        TypedObject result;
-                        if (p.GetMessageType() == 0x14) // Connect
-                            result = RTMPSDecoder.DecodeConnect(p.GetData());
-                        else if (p.GetMessageType() == 0x11) // Invoke
-                            result = RTMPSDecoder.DecodeInvoke(p.GetData());
-                        else if (p.GetMessageType() == 0x06) // Set peer bandwidth
-                        {
-                            byte[] data = p.GetData();
-                            int windowSize = 0;
-                            for (int i = 0; i < 4; i++)
-                                windowSize = windowSize * 256 + (data[i] & 0xFF);
-                            int type = data[4];
-                            continue;
-                        }
-                        else if (p.GetMessageType() == 0x03) // Ack
-                        {
-                            byte[] data = p.GetData();
-                            int ackSize = 0;
-                            for (int i = 0; i < 4; i++)
-                                ackSize = ackSize * 256 + (data[i] & 0xFF);
-                            continue;
-                        }
-                        else
-                        // Skip most messages
-                        {
-                            continue;
-                        }
-
-                        // Store result
-
-                        int? id = result.GetInt("invokeId");
-
-                        //Check to see if the result is valid.
-                        //If it isn't, give an error and remove the callback if there is one.
-                        if (result["result"].Equals("_error"))
-                        {
-                            Error("Warning, invalid result (" + callbacks[(int)id].GetType() + ") : " + GetErrorMessage(result), ErrorType.Receive);
-
-                            if (callbacks.ContainsKey((int)id))
-                            {
-                                RiotGamesObject cb = callbacks[(int)id];
-                                //TODO: better way then current hotfix to send PlatformGame as a null value
-                                if (cb.GetType().ToString() == "PVPNetConnect.RiotObjects.Game.PlatformGameLifecycle")
-                                {
-                                    if (cb != null)
-                                    {
-                                        cb.DoCallback(null);
-                                    }
-                                }
-                                callbacks.Remove((int)id);
-                            }
-                        }
-
-
-                        if (id == null || id == 0)
-                        {
-                        }
-                        else if (callbacks.ContainsKey((int)id))
-                        {
-                            RiotGamesObject cb = callbacks[(int)id];
-                            callbacks.Remove((int)id);
-                            if (cb != null)
-                            {
-                                TypedObject messageBody = result.GetTO("data").GetTO("body");
-                                Thread t = new Thread(() =>
-                                {
-                                    cb.DoCallback(messageBody);
-                                });
-                                t.Start();
-                            }
-                        }
-
-                        else
-                        {
-                            results.Add((int)id, result);
-                        }
-                        pendingInvokes.Remove((int)id);
-
+                        pvpnet.Disconnect();
                     }
 
-                }
-                catch (Exception e)
-                {
-                    if (IsConnected())
-                        Error(e.Message, ErrorType.Receive);
+                    int channel = basicHeader & 0x2F;
+                    int headerType = basicHeader & 0xC0;
 
-                    Disconnect();
+                    int headerSize = 0;
+                    if (headerType == 0x00)
+                        headerSize = 12;
+                    else if (headerType == 0x40)
+                        headerSize = 8;
+                    else if (headerType == 0x80)
+                        headerSize = 4;
+                    else if (headerType == 0xC0)
+                        headerSize = 1;
+
+                    // Retrieve the packet or make a new one
+                    if (!packets.ContainsKey(channel))
+                        packets.Add(channel, new Packet());
+                    Packet p = packets[channel];
+
+                    // Parse the full header
+                    if (headerSize > 1)
+                    {
+                        byte[] header = new byte[headerSize - 1];
+                        for (int i = 0; i < header.Length; i++)
+                            header[i] = (byte)pvpnet.sslStream.ReadByte();
+
+                        if (headerSize >= 8)
+                        {
+                            int size = 0;
+                            for (int i = 3; i < 6; i++)
+                                size = size * 256 + (header[i] & 0xFF);
+                            p.SetSize(size);
+
+                            p.SetType(header[6]);
+                        }
+                    }
+
+                    // Read rest of packet
+                    for (int i = 0; i < 128; i++)
+                    {
+                        byte b = (byte)pvpnet.sslStream.ReadByte();
+                        p.Add(b);
+
+                        if (p.IsComplete())
+                            break;
+                    }
+
+                    if (!p.IsComplete())
+                        continue;
+
+                    // Remove the read packet
+                    packets.Remove(channel);
+
+
+                    // Decode result
+                    TypedObject result;
+                    if (p.GetMessageType() == 0x14) // Connect
+                        result = RTMPSDecoder.DecodeConnect(p.GetData());
+                    else if (p.GetMessageType() == 0x11) // Invoke
+                        result = RTMPSDecoder.DecodeInvoke(p.GetData());
+                    else if (p.GetMessageType() == 0x06) // Set peer bandwidth
+                    {
+                        byte[] data = p.GetData();
+                        int windowSize = 0;
+                        for (int i = 0; i < 4; i++)
+                            windowSize = windowSize * 256 + (data[i] & 0xFF);
+                        int type = data[4];
+                        continue;
+                    }
+                    else if (p.GetMessageType() == 0x03) // Ack
+                    {
+                        byte[] data = p.GetData();
+                        int ackSize = 0;
+                        for (int i = 0; i < 4; i++)
+                            ackSize = ackSize * 256 + (data[i] & 0xFF);
+                        continue;
+                    }
+                    else
+                    // Skip most messages
+                    {
+                        continue;
+                    }
+
+                    // Store result
+
+                    int? id = result.GetInt("invokeId");
+
+                    //Check to see if the result is valid.
+                    //If it isn't, give an error and remove the callback if there is one.
+                    if (result["result"].Equals("_error"))
+                    {
+                        if (pvpnet.callbacks.ContainsKey((int)id))
+                        {
+                            RiotGamesObject cb = pvpnet.callbacks[(int)id];
+                            //TODO: better way then current hotfix to send PlatformGame as a null value
+                            if (cb.GetType().ToString() == "PVPNetConnect.RiotObjects.Game.PlatformGameLifecycle")
+                            {
+                                if (cb != null)
+                                {
+                                    cb.DoCallback(null);
+                                }
+                            }
+                            pvpnet.callbacks.Remove((int)id);
+                        }
+                        else
+                        {
+                            //Dictionary error
+                            pvpnet.Error("Warning, invalid result (" + pvpnet.callbacks[(int)id].GetType() + ") : " + pvpnet.GetErrorMessage(result), ErrorType.Receive);
+                        }
+                    }
+
+
+                    if (id == null || id == 0)
+                    {
+                    }
+                    else if (pvpnet.callbacks.ContainsKey((int)id))
+                    {
+                        RiotGamesObject cb = pvpnet.callbacks[(int)id];
+                        pvpnet.callbacks.Remove((int)id);
+                        if (cb != null)
+                        {
+                            TypedObject messageBody = result.GetTO("data").GetTO("body");
+
+                            ThreadPool.QueueUserWorkItem(new WaitCallback(BeginCallback), new CallbackData(cb, messageBody));
+                        }
+                    }
+
+                    else
+                    {
+                        pvpnet.results.Add((int)id, result);
+                    }
+                    pvpnet.pendingInvokes.Remove((int)id);
+
                 }
-            });
-            decodeThread.Start();
+
+            }
+            catch (Exception e)
+            {
+                if (pvpnet.IsConnected())
+                    pvpnet.Error(e.Message, ErrorType.Receive);
+
+                pvpnet.Disconnect();
+            }
         }
 
+        private static void BeginCallback(object sender)
+        {
+            CallbackData data = (CallbackData) sender;
+
+            data.callback.DoCallback(data.messageBody);
+        }
 
         /// <summary>
         /// Gets the result from the server based on specifed invoke ID.
