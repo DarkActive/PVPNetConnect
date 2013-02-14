@@ -50,36 +50,36 @@ namespace PVPNetConnect.RiotObjects
 
             try
             {
-               if (type == typeof(string))
+               if (type.Equals(typeof(string)))
                {
                   value = Convert.ToString(result[intern.Name]);
                }
-               else if (type == typeof(Int32))
+               else if (type.Equals(typeof(Int32)))
                {
                   value = Convert.ToInt32(result[intern.Name]);
                }
-               else if (type == typeof(Int64))
+               else if (type.Equals(typeof(Int64)))
                {
                   value = Convert.ToInt64(result[intern.Name]);
                }
-               else if (type == typeof(double))
+               else if (type.Equals(typeof(double)))
                {
                   value = Convert.ToInt64(result[intern.Name]);
                }
-               else if (type == typeof(bool))
+               else if (type.Equals(typeof(bool)))
                {
                   value = Convert.ToBoolean(result[intern.Name]);
                }
-               else if (type == typeof(DateTime))
+               else if (type.Equals(typeof(DateTime)))
                {
                    value = result[intern.Name];
                }
-               else if (type == typeof(TypedObject))
+               else if (type.Equals(typeof(TypedObject)))
                {
                   value = (TypedObject)result[intern.Name];
                }
 
-               else if (type.IsGenericType && type.GetGenericTypeDefinition() == typeof(List<>))
+               else if (type.IsGenericType && type.GetGenericTypeDefinition().Equals(typeof(List<>)))
                {
                    object[] temp = result.GetArray(intern.Name);
 
@@ -90,7 +90,7 @@ namespace PVPNetConnect.RiotObjects
 
                    foreach (object data in temp)
                    {
-                       if (elementType == typeof(string))
+                       if (elementType.Equals(typeof(string)))
                        {
                            objectList.Add((string)data);
                        }
@@ -102,7 +102,7 @@ namespace PVPNetConnect.RiotObjects
 
                    value = objectList;
                }
-               else if (type.IsGenericType && type.GetGenericTypeDefinition() == typeof(Dictionary<,>))
+               else if (type.IsGenericType && type.GetGenericTypeDefinition().Equals(typeof(Dictionary<,>)))
                {
                    TypedObject to = result.GetTO(intern.Name);
 
@@ -117,11 +117,11 @@ namespace PVPNetConnect.RiotObjects
 
                    value = objectDictionary;
                }
-               else if (type == typeof(object[]))
+               else if (type.Equals(typeof(object[])))
                {
                    value = new ArrayCollection(result.GetArray(intern.Name));
                }
-               else if (type == typeof(object))
+               else if (type.Equals(typeof(object)))
                {
                    value = result[intern.Name];
                }

@@ -140,9 +140,18 @@ namespace PVPNetConnect
         /// </summary>
         private Dictionary<int, RiotGamesObject> callbacks = new Dictionary<int, RiotGamesObject>();
         /// <summary>
+        /// The decode thread
+        /// </summary>
+        private Thread decodeThread;
+
+        /// <summary>
         /// The heartbeat count
         /// </summary>
         private int heartbeatCount = 1;
+        /// <summary>
+        /// The heartbeat thread
+        /// </summary>
+        private Thread heartbeatThread;
 
         #endregion
 
@@ -361,7 +370,7 @@ namespace PVPNetConnect
             if (!pvpnet.Login())
                 return;
 
-            ThreadPool.QueueUserWorkItem(new WaitCallback(StartHeartbeat), pvpnet);
+            //ThreadPool.QueueUserWorkItem(new WaitCallback(StartHeartbeat), pvpnet);
         }
 
         /// <summary>
@@ -883,7 +892,7 @@ namespace PVPNetConnect
         {
             PVPNetConnection pvpnet = (PVPNetConnection)sender;
 
-            while (pvpnet.isConnected)
+            while (true)
             {
                 try
                 {
@@ -913,35 +922,37 @@ namespace PVPNetConnect
         /// </summary>
         public void Disconnect()
         {
-            ThreadPool.QueueUserWorkItem(new WaitCallback(Disconnect), this);
-        }
-
-        private static void Disconnect(object sender)
-        {
-            PVPNetConnection pvpnet = (PVPNetConnection)sender;
-
-            if (pvpnet.isConnected)
+            Thread t = new Thread(() =>
             {
-                int id = pvpnet.Invoke("loginService", "logout", new object[] { pvpnet.authToken });
-                pvpnet.Join(id);
-            }
+                if (isConnected)
+                {
+                    int id = Invoke("loginService", "logout", new object[] { authToken });
+                    Join(id);
+                }
 
-            // Setting isConnected to false, should be enough to stop threads in ThreadPool
-            pvpnet.isConnected = false;
+                isConnected = false;
 
-            pvpnet.invokeID = 2;
-            pvpnet.heartbeatCount = 1;
-            pvpnet.pendingInvokes.Clear();
-            pvpnet.callbacks.Clear();
-            pvpnet.results.Clear();
+                if (heartbeatThread != null)
+                    heartbeatThread.Abort();
 
-            pvpnet.client = null;
-            pvpnet.sslStream = null;
+                if (decodeThread != null)
+                    decodeThread.Abort();
 
-            if (pvpnet.OnDisconnect != null)
-                pvpnet.OnDisconnect(pvpnet, EventArgs.Empty);
+                invokeID = 2;
+                heartbeatCount = 1;
+                pendingInvokes.Clear();
+                callbacks.Clear();
+                results.Clear();
+
+                client = null;
+                sslStream = null;
+
+                if (OnDisconnect != null)
+                    OnDisconnect(this, EventArgs.Empty);
+            });
+
+            t.Start();
         }
-
         #endregion
 
         #region Error Methods
@@ -1080,7 +1091,7 @@ namespace PVPNetConnect
             {
                 Dictionary<int, Packet> packets = new Dictionary<int, Packet>();
 
-                while (pvpnet.isConnected)
+                while (true)
                 {
                     byte basicHeader = (byte)pvpnet.sslStream.ReadByte();
                     if ((int)basicHeader == -1)
@@ -1194,7 +1205,7 @@ namespace PVPNetConnect
                         else
                         {
                             //Dictionary error
-                            pvpnet.Error("Warning, invalid result (" + pvpnet.callbacks[(int)id].GetType() + ") : " + pvpnet.GetErrorMessage(result), ErrorType.Receive);
+                            //conn.Error("Warning, invalid result (" + conn.callbacks[(int)id].GetType() + ") : " + conn.GetErrorMessage(result), ErrorType.Receive);
                         }
                     }
 
@@ -1210,7 +1221,7 @@ namespace PVPNetConnect
                         {
                             TypedObject messageBody = result.GetTO("data").GetTO("body");
 
-                            ThreadPool.QueueUserWorkItem(new WaitCallback(BeginCallback), new CallbackData(cb, messageBody));
+                            ThreadPool.QueueUserWorkItem(new WaitCallback(BeingCallback), new CallbackData(cb, messageBody));
                         }
                     }
 
@@ -1232,7 +1243,7 @@ namespace PVPNetConnect
             }
         }
 
-        private static void BeginCallback(object sender)
+        private static void BeingCallback(object sender)
         {
             CallbackData data = (CallbackData) sender;
 
