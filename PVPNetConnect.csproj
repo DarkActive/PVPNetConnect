@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <StartupObject>
+    </StartupObject>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{02DA7CB2-EA91-46A7-A68B-A7B8ABEE30DF}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PVPNetConnect</RootNamespace>
+    <AssemblyName>PVPNetConnect</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <PlatformTarget>x86</PlatformTarget>
+    <DocumentationFile>bin\Debug\PVPNetConnect.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ArrayCollection.cs" />
+    <Compile Include="Assets\CallbackData.cs" />
+    <Compile Include="Assets\StringEnums.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ClassDefinition.cs" />
+    <Compile Include="Error.cs" />
+    <Compile Include="Packet.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Region.cs" />
+    <Compile Include="PVPNetConnection.cs" />
+    <Compile Include="RiotObjects\Catalog\Talent.cs" />
+    <Compile Include="RiotObjects\Catalog\TalentRow.cs" />
+    <Compile Include="RiotObjects\Catalog\TalentGroup.cs" />
+    <Compile Include="RiotObjects\Catalog\Effect.cs" />
+    <Compile Include="RiotObjects\Catalog\ItemEffect.cs" />
+    <Compile Include="RiotObjects\Catalog\Rune.cs" />
+    <Compile Include="RiotObjects\Catalog\RuneType.cs" />
+    <Compile Include="RiotObjects\Catalog\RuneSlot.cs" />
+    <Compile Include="RiotObjects\Client\LoginDataPacket.cs" />
+    <Compile Include="RiotObjects\Game\BannedChampion.cs" />
+    <Compile Include="RiotObjects\Game\GameTypeConfig.cs" />
+    <Compile Include="RiotObjects\Game\PlayerChampionSelection.cs" />
+    <Compile Include="RiotObjects\Game\PlayerParticipant.cs" />
+    <Compile Include="RiotObjects\Game\GameObserver.cs" />
+    <Compile Include="RiotObjects\Game\PlayerCredentials.cs" />
+    <Compile Include="RiotObjects\Game\GameDTO.cs" />
+    <Compile Include="RiotObjects\Game\PlatformGameLifecycle.cs" />
+    <Compile Include="RiotObjects\Leagues\LeagueItem.cs" />
+    <Compile Include="RiotObjects\Leagues\League.cs" />
+    <Compile Include="RiotObjects\Leagues\SummonerLeagues.cs" />
+    <Compile Include="RiotObjects\Statistics\AggregatedStats.cs" />
+    <Compile Include="RiotObjects\Statistics\ChampionStatInfo.cs" />
+    <Compile Include="RiotObjects\Statistics\AggregatedStat.cs" />
+    <Compile Include="RiotObjects\Statistics\AggregatedStatKey.cs" />
+    <Compile Include="RiotObjects\Statistics\TimeTrackedStat.cs" />
+    <Compile Include="RiotObjects\Statistics\PlayerStats.cs" />
+    <Compile Include="RiotObjects\Statistics\LeaverPenaltyStats.cs" />
+    <Compile Include="RiotObjects\Statistics\PlayerStatSummary.cs" />
+    <Compile Include="RiotObjects\Statistics\PlayerLifetimeStats.cs" />
+    <Compile Include="RiotObjects\Statistics\TopPlayedChampions.cs" />
+    <Compile Include="RiotObjects\Statistics\FellowPlayerInfo.cs" />
+    <Compile Include="RiotObjects\Statistics\RawStat.cs" />
+    <Compile Include="RiotObjects\Statistics\PlayerGameStats.cs" />
+    <Compile Include="RiotObjects\Statistics\RecentGames.cs" />
+    <Compile Include="RiotObjects\Summoner\SummonerNames.cs" />
+    <Compile Include="RiotObjects\Summoner\SummonerCatalog.cs" />
+    <Compile Include="RiotObjects\Summoner\Masterybook\TalentEntry.cs" />
+    <Compile Include="RiotObjects\Summoner\Masterybook\MasteryBookPage.cs" />
+    <Compile Include="RiotObjects\Summoner\PublicSummoner.cs" />
+    <Compile Include="RiotObjects\RiotGamesObject.cs" />
+    <Compile Include="RiotObjects\Statistics\PlayerStatSummaries.cs" />
+    <Compile Include="RiotObjects\Summoner\AllSummonerData.cs" />
+    <Compile Include="RiotObjects\Summoner\Masterybook\MasteryBook.cs" />
+    <Compile Include="RiotObjects\Summoner\SummonerGameModeSpells.cs" />
+    <Compile Include="RiotObjects\Summoner\Spellbook\SlotEntry.cs" />
+    <Compile Include="RiotObjects\Summoner\Spellbook\SpellBookPage.cs" />
+    <Compile Include="RiotObjects\Summoner\Spellbook\SpellBook.cs" />
+    <Compile Include="RiotObjects\Summoner\SummonerDefaultSpells.cs" />
+    <Compile Include="RiotObjects\Summoner\SummonerLevelAndPoints.cs" />
+    <Compile Include="RiotObjects\Summoner\AllPublicSummonerData.cs" />
+    <Compile Include="RiotObjects\Summoner\SummonerLevel.cs" />
+    <Compile Include="RiotObjects\Summoner\Summoner.cs" />
+    <Compile Include="RiotObjects\Summoner\SummonerTalentsAndPoints.cs" />
+    <Compile Include="RiotObjects\UnclassedObject.cs" />
+    <Compile Include="RTMPSDecoder.cs" />
+    <Compile Include="RTMPSEncoder.cs" />
+    <Compile Include="SafeSslStream.cs" />
+    <Compile Include="StateObject.cs" />
+    <Compile Include="TypedObject.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ChangeLog.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="RiotObjects\Team\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
