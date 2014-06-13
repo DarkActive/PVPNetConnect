@@ -331,7 +331,7 @@ namespace PVPNetConnect
             }
             catch
             {
-                pvpnet.Error("Riots servers are currently unabailable.", ErrorType.AuthKey);
+                pvpnet.Error("Riots servers are currently unavailable.", ErrorType.AuthKey);
                 pvpnet.Disconnect();
                 return;
             }
